@@ -1,15 +1,18 @@
 \documentclass[12pt]{article}
 
-\usepackage[hmargin=2.5cm, vmargin={3cm,3cm}, a4paper]{geometry} 
+\usepackage[hmargin=2.5cm, vmargin={3cm,3cm}, a4paper]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathrsfs}
 \usepackage{epsfig,epsf,subfigure,graphicx,graphics}
 \usepackage{url,enumerate}
+
+\usepackage{subfiles}
+
 \graphicspath{{fig/}}
 \usepackage{fancyhdr}
 \setlength{\headheight}{12pt}
 \pagestyle{fancyplain}
 
- 
+
 \rhead{}
 \lhead{}
 \chead{{\it Network Information Theory}}
@@ -21,13 +24,15 @@
 \begin{document}
 \maketitle
 \thispagestyle{fancyplain}
-\flushleft 
+\flushleft
 
 {\it Solution}.\par
 \smallskip
-%%
-% Put the solutions here
-%%
+
+
+\section{Exercise 1}
+
+\subfile{Exercise1}
 
 
 \end{document}
