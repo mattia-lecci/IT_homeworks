@@ -9,6 +9,12 @@
 \setlength{\headheight}{12pt}
 \pagestyle{fancyplain}
 
+\numberwithin{equation}{section}
+
+% definitions/operators
+\DeclareMathOperator*{\argmax}{arg\,max\;}
+\DeclareMathOperator*{\argmin}{arg\,min\;}
+\newcommand{\eqtext}[1]{\ensuremath{\stackrel{#1}{=}}}
 
 \rhead{}
 \lhead{}
@@ -26,7 +32,9 @@
 
 %% execises
 \input{tex/ex1.tex}
-
-\input{tex/ex2.tex}
+\input{tex/ex3.tex} %%%%%%%% fix!!
+\input{tex/ex2.tex} %%%%%%%%
+\input{tex/ex4.tex}
+\input{tex/ex5.tex}
 
 \end{document}

@@ -1,0 +1,18 @@
+\section{Problem 3.5}
+
+\subsection{3.5(a)}
+Let's define
+%
+\begin{equation}
+N(m) \triangleq \left|\{ i: y_i=x_i(m) \} \right|
+\end{equation}
+%
+Note that it is strictly related to to the hamming distance, in fact $d(x^n(m),y^n) = n-N(m)$.
+
+In the case of a memoryless channel, the MLD works as follows:
+%
+\begin{equation}
+\hat{m} = \argmax_m \prod_{i=1}^{n} p_{Y|X}(y_i|x_i(m)) = \argmax_m (1-p)^{N(m)} p^{n-N(m)}
+\end{equation}
+%
+where the last equality comes from the fact that the Binary Symmetric Channel (BSC) only cares about whether a symbol is correctly or incorrectly transmitted. Assuming that $x^n(m)$ is sent and $y^n$ is received, there will be $N(m)$ correctly transmitted bits (each w.p. $(1-p)$ and $n-N(m)$ errors (each w.p. $p$).

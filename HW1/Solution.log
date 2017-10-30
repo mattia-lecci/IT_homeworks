@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  30 OCT 2017 14:54
 =======
@@ -7,6 +8,9 @@ This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded
 This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.6.16)  30 OCT 2017 14:31
 >>>>>>> Stashed changes
 >>>>>>> origin/master
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.6.16)  30 OCT 2017 15:20
+>>>>>>> Stashed changes
 entering extended mode
 **./Solution.tex
 (Solution.tex
@@ -224,18 +228,18 @@ Package: fancyhdr 2016/10/11 v3.9 Extensive control of page headers and footers
 ) (Solution.aux)
 \openout1 = `Solution.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
-LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -332,29 +336,23 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2 ,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 22.
+LaTeX Font Info:    Try loading font information for U+msa on input line 28.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 22.
+LaTeX Font Info:    Try loading font information for U+msb on input line 28.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 22.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 28.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-<<<<<<< Updated upstream
-) (./tex/ex1.tex
+) (tex/ex1.tex
 Overfull \hbox (12.60522pt too wide) detected at line 18
 [][]
-=======
-) (tex/ex1.tex
-Overfull \hbox (12.60522pt too wide) in paragraph at lines 16--16
-[]  
->>>>>>> Stashed changes
  []
 
 
@@ -372,20 +370,15 @@ Package epstopdf Info: Source file: <img/func_info_ex1.eps>
 (epstopdf)             Output file: <img/func_info_ex1-eps-converted-to.pdf>
 (epstopdf)                    date: 2017-10-28 15:40:51
 (epstopdf)                    size: 27538 bytes
-<<<<<<< Updated upstream
-(epstopdf)             Command: <repstopdf --outfile=img/func_info_ex1-eps-conv
-erted-to.pdf img/func_info_ex1.eps>
-(epstopdf)             \includegraphics on input line 44.
-=======
 (epstopdf)             Command: <epstopdf --outfile=img/func_info_ex1-eps-conve
 rted-to.pdf img/func_info_ex1.eps>
-(epstopdf)             \includegraphics on input line 40.
->>>>>>> Stashed changes
+(epstopdf)             \includegraphics on input line 44.
 Package epstopdf Info: Output file is already uptodate.
 <img/func_info_ex1-eps-converted-to.pdf, id=16, pagebox=cropbox, 367.3725pt x 2
 88.07625pt>
 File: img/func_info_ex1-eps-converted-to.pdf Graphic file (type pdf)
 <use img/func_info_ex1-eps-converted-to.pdf>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 Package pdftex.def Info: img/func_info_ex1-eps-converted-to.pdf used on input l
 ine 44.
@@ -417,36 +410,39 @@ PDF statistics:
  75 PDF objects out of 1000 (max. 8388607)
  53 compressed objects within 1 object stream
 =======
-Package pdftex.def Info: img/func_info_ex1-eps-converted-to.pdf  used on input 
-line 40. on input line 40.
-Package pdftex.def Info: Requested size: 318.66948pt x 249.90341pt on input lin
-e 40.
- [2 <./img/func_info_ex1-eps-converted-to.pdf>]) [3] (Solution.aux) ) 
-Here is how much of TeX's memory you used:
- 3412 strings out of 493319
- 45367 string characters out of 3138935
- 115389 words of memory out of 3000000
- 6858 multiletter control sequences out of 15000+200000
- 13126 words of font info for 53 fonts, out of 3000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 41i,12n,43p,376b,234s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Progra
-m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><
-C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on Solution.pdf (3 pages, 156910 bytes).
-PDF statistics:
- 67 PDF objects out of 1000 (max. 8388607)
+=======
 >>>>>>> Stashed changes
+Package pdftex.def Info: img/func_info_ex1-eps-converted-to.pdf  used on input 
+line 44. on input line 44.
+Package pdftex.def Info: Requested size: 318.66948pt x 249.90341pt on input lin
+e 44.
+ [2 <./img/func_info_ex1-eps-converted-to.pdf>]) (tex/ex3.tex) (tex/ex2.tex [3]
+ [4]) (tex/ex4.tex)
+(tex/ex5.tex) [5] (Solution.aux) ) 
+Here is how much of TeX's memory you used:
+ 3438 strings out of 493319
+ 45580 string characters out of 3138935
+ 118546 words of memory out of 3000000
+ 6872 multiletter control sequences out of 15000+200000
+ 13433 words of font info for 54 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,12n,43p,449b,234s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
+i12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10
+.pfb>
+Output written on Solution.pdf (5 pages, 187523 bytes).
+PDF statistics:
+ 73 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
