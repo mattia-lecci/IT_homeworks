@@ -59,7 +59,7 @@ We conclude that the second channel is opened for every amount of allocated powe
 
 \subsection{Energy-per-bit-rate function computation}
 
-Now we want to compute the \textit{energy-per-bit-rate function} $E_b(R)$ in the scenario previously described. We know that $P = R \cdot E$ where $R$ is the \textit{bit-rate} of the channel and $E$ is the used energy for every bit. In addiction we know that depending of what amount of power is avaliable, the \textit{bit-rate} is restricted as shown in \eqref{1case} and \eqref{2case}.
+Now we want to compute the \textit{energy-per-bit-rate function} $E_b(R)$ in the scenario previously described. We know that $P = R \cdot E$ where $R$ is the \textit{bit-rate} of the channel and $E$ is the used energy for every bit. In addiction we know that the \textit{bit-rate} is bounded by channel capacity as shown in \eqref{1case} and \eqref{2case}.
 
 \begin{equation}
 		R \leq \frac{1}{2} \cdot \log\big( 1 + g_2^2P \big) \Leftrightarrow P < \frac{1}{g_1^2} - \frac{1}{g_2^2}
@@ -68,78 +68,50 @@ Now we want to compute the \textit{energy-per-bit-rate function} $E_b(R)$ in the
 
 
 \begin{equation}
-		R \leq \frac{1}{2} \cdot \sum_{j=1}^2 \log\Big(\frac{g_j^2}{2} \cdot \Big(P+\frac{1}{g_1^2} + \frac{1}{g_2^2}\Big)\Big) \Leftrightarrow P \geq \frac{1}{g_1^2} - \frac{1}{g_2^2}
+		R \leq \frac{1}{2} \cdot \sum_{j=1}^2 \log\Big(\frac{g_j^2}{2} \cdot \Big(P+\frac{1}{g_1^2} + \frac{1}{g_2^2}\Big)\Big)= \frac{1}{2} \cdot \log\Big(\frac{g_1^2 g_2^2}{4} \cdot \Big(P+\frac{1}{g_1^2} + \frac{1}{g_2^2}\Big)^2\Big) \Leftrightarrow P \geq \frac{1}{g_1^2} - \frac{1}{g_2^2}
 		\label{2case}
 \end{equation}
 
-Supponing to achieve the maximum rate in both \eqref{1case} and \eqref{2case} we can compute R in function of P and then write again the boundaries condition as follows.
+
+Let's consider \eqref{1case} which is the case where only one channel is opened. Writing $R$ in function of $P$ we get what follows.
 
 \begin{equation}
 	\begin{gathered}
-		R \leq \frac{1}{2} \cdot \log\big( 1 + g_2^2P \big) \\
-		\Rightarrow \frac{2^{2R}-1}{g_2^2} \leq P < \frac{1}{g_1^2} - \frac{1}{g_2^2} \\
-		\Rightarrow R < \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big)
+		P \geq \Big(\frac{2^{2R}-1}{g_2^2}\Big)
+		\Leftrightarrow R < \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big)
 	\end{gathered}
-	\label{bound1}
 \end{equation}
+
+Let's consider \eqref{2case} which is the case where only one channel is opened. Writing $R$ in function of $P$ we get what follows.
 
 \begin{equation}
 	\begin{gathered}
-		R \leq \frac{1}{2} \cdot \sum_{j=1}^2 \log\Big(\frac{g_j^2}{2} \cdot \Big(P+\frac{1}{g_1^2} + \frac{1}{g_2^2}\Big)\Big) \\
-		\Rightarrow P \geq \frac{2^{R+1}}{g_1g_2} -\frac{1}{g_1^2} - \frac{1}{g_2^2}
-	\end{gathered}
-	\label{bound2}
-\end{equation}
-
-
-Let's first consider the case where only one channel is opened. Sobstituting $P=E \cdot R$ in \eqref{1case} we get what follows.
-
-\begin{equation}
-	\begin{gathered}
-		R \leq \frac{1}{2} \cdot \log\big( 1 + g_2^2 E R \big) \\
-		\Rightarrow E \geq \frac{1}{R}\Big(\frac{2^{2R}-1}{g_2^2}\Big)
+		P \geq \Big(\frac{2^{R+1}}{g_1g_2} -\frac{1}{g_1^2} - \frac{1}{g_2^2} \Big)
+		\Leftrightarrow R \geq \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big)
 	\end{gathered}
 \end{equation}
 
-Let's now consider the case where both the channels are opened. Sobstituiting $P=E \cdot R$ in \eqref{2case} we get what follows.
-
-\begin{equation}
-	\begin{gathered}
-		R \leq \frac{1}{2} \cdot \sum_{j=1}^2 \log\Big(\frac{g_j^2}{2} \cdot \Big(ER+\frac{1}{g_1^2} + \frac{1}{g_2^2}\Big)\Big) \\
-		\Rightarrow R \leq \frac{1}{2} \cdot \log\Big(\frac{g_1^2 g_2^2}{4} \cdot \Big(ER+\frac{1}{g_1^2} + \frac{1}{g_2^2}\Big)^2\Big) \\
-		\Rightarrow E \geq \frac{1}{R} \Big(\frac{2^{R+1}}{g_1g_2} -\frac{1}{g_1^2} - \frac{1}{g_2^2} \Big)
-	\end{gathered}
-\end{equation}
-
-We conclude that \textit{energy-per-bit rate function} is equal to the minimum energy-per-bit required for every value of R as we can see from \eqref{epbfunction}.
+Knowing that $P = E \cdot R$ we define the \textit{energy-per-bit-rate function} $E_b(R)$ as shown in \eqref{epbfunction}.
 
 \begin{equation} E_b(R)=
 	\begin{cases}
-		\frac{1}{R}\Big(\frac{2^{2R}-1}{g_2^2}\Big) \quad P < \frac{1}{g_1^2} - \frac{1}{g_2^2}  \\
-		\frac{1}{R} \Big(\frac{2^{R+1}}{g_1g_2} -\frac{1}{g_1^2} - \frac{1}{g_2^2} \Big)  \quad P \geq \frac{1}{g_1^2} - \frac{1}{g_2^2}
+		\frac{1}{R}\Big(\frac{2^{2R}-1}{g_2^2}\Big) \quad R < \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big) \\
+		\frac{1}{R} \Big(\frac{2^{R+1}}{g_1g_2} -\frac{1}{g_1^2} - \frac{1}{g_2^2} \Big)  \quad R \geq \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big)
 	\end{cases}
 	\label{epbfunction}
 \end{equation}
 
-Now we want to compute the minimum energy-per-bit as $R \rightarrow 0$.
-
+Now we want to compute the minimum energy-per-bit as $R \rightarrow 0$. We notice that for low value of $R$ we find ourself in the case where only one of the two channels id opened. Then for compute $\lim_{R \rightarrow 0} E_b(R)$ we procede as follows.
 
 \begin{equation}
 	\lim_{R \rightarrow 0} E_b(R) =
-		\lim_{R \rightarrow 0} \Big(\frac{2^{2R}-1}{g_2^2 R}\Big) = \lim_{R \rightarrow 0} \frac{ \frac{d(2^{2R}-1)}{dR}} {\frac{dg_2^2 R}{dR}}=\frac{2\ln{2}}{g_2^2} \quad P < \frac{1}{g_1^2} - \frac{1}{g_2^2}
-\end{equation}
-
-\begin{equation}
-		\lim_{R \rightarrow 0} E_b(R) =
-		\lim_{R \rightarrow 0} \frac{1}{R} \Big(\frac{2^{R+1}}{g_1g_2} -\frac{1}{g_1^2} - \frac{1}{g_2^2} \Big) = \lim_{R \rightarrow 0} \frac{ \frac{d(2^{R+1})}{dR}} {\frac{dg_1g_2 R}{dR}}=\frac{2\ln{2}}{g_1g_2}  \quad P \geq \frac{1}{g_1^2} - \frac{1}{g_2^2}
+		\lim_{R \rightarrow 0} \Big(\frac{2^{2R}-1}{g_2^2 R}\Big) = \lim_{R \rightarrow 0} \frac{ \frac{d(2^{2R}-1)}{dR}} {\frac{dg_2^2 R}{dR}}=\frac{2\ln{2}}{g_2^2}
 \end{equation}
 
 We conclude that the minimum energy-per-bit as $R \rightarrow 0$ is equal to \eqref{emin}.
 
 \begin{equation}
-	\lim_{R \rightarrow 0} E_b(R) = \begin{cases}
-		\frac{2\ln{2}}{g_2^2} \quad P < \frac{1}{g_1^2} - \frac{1}{g_2^2} \\
-		\frac{2\ln{2}}{g_1g_2} \quad P \geq \frac{1}{g_1^2} - \frac{1}{g_2^2}
-\end{cases}
+	\lim_{R \rightarrow 0} E_b(R) =
+		\frac{2\ln{2}}{g_2^2}
 \label{emin}
 \end{equation}
