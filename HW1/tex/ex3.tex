@@ -1,6 +1,6 @@
 \section{Problem 3.5}
-
-\subsection{3.5(a)}
+\numberwithin{equation}{subsection}
+\subsection{MLD - minimum distance equivalence}
 Let's define
 %
 \begin{equation}
@@ -16,3 +16,66 @@ In the case of a memoryless channel, the MLD works as follows:
 \end{equation}
 %
 where the last equality comes from the fact that the Binary Symmetric Channel (BSC) only cares about whether a symbol is correctly or incorrectly transmitted. Assuming that $x^n(m)$ is sent and $y^n$ is received, there will be $N(m)$ correctly transmitted bits (each w.p. $(1-p)$ and $n-N(m)$ errors (each w.p. $p$).
+
+Using the natural logarithm (which is a strictly monotonically increasing function) we obtain
+%
+\begin{align}
+\begin{split}
+\hat{m} =& \argmax_m N(m)\log(1-p) + (n-N(m)) \log p\\
+\eqtext{(a)}& \argmax_m N(m)\log(1-p) -N(m) \log p\\
+=& \argmax_m N(m)\log\left( \frac{1-p}{p} \right)\\
+\eqtext{(b)}& \argmax_m N(m)\\
+\eqtext{(c)}& \argmin_m n-N(m)\\
+=& \argmin_m d( x^n(m),y^n)
+\end{split}
+\end{align}
+%
+where in $(a)$ we noted that the factor $n \log p$ doesn't depend on $m$, hence it can be neglected, in $(b)$ again we neglect the constant positive term (by assumption $p<\frac{1}{2}$), in $(c)$ we apply a strictly monotonically decreasing function ($x \rightarrow n-x$ with a given $n$), hence we need to search for a minimum instead of a maximum. The last equality has already been discussed at the beginning of the section.
+
+\subsection{Error bound}
+
+\subsection{Achievability result}
+
+First, we want to show that
+%
+\begin{equation}\label{eq:3.5c_goal}
+\Pr[d(X^n(1),Y^n)>n(p+\varepsilon) | M=1] \xrightarrow{n\rightarrow \infty} 0
+\end{equation}
+
+Recalling the Weak Law of Large Number for iid random variables
+%
+\begin{equation}
+\lim_{n \rightarrow \infty} \Pr \qty( \qty|\frac{1}{n} \sum_{i=1}^{n} X_i - E[X]|> \varepsilon ) = 0
+\end{equation}
+%
+we see that it's closely related to our case of study. In fact consider
+%
+\begin{equation}
+E[d(X^n(1),Y^n)] = E\qty[ \sum_{i=1}^{n} \mathds{1}[Y_i(1) \neq Y_i] ] = \sum_{i=1}^n E[ \mathds{1}[Y_i(1) \neq Y_i] ] = \sum_{i=1}^n p = np
+\end{equation}
+
+From here and from Eq.~\eqref{eq:3.5c_goal} we cam rearrange terms
+%
+\begin{equation}
+\Pr \qty[ \frac{1}{n} d(X^n(1),Y^n) - p > \varepsilon |M=1] \leq \Pr \qty[ \qty| \frac{1}{n} d(X^n(1),Y^n) - p| > \varepsilon] \xrightarrow{n\rightarrow \infty} 0
+\end{equation}
+%
+where the inequality comes from the fact that, considering $X$ a generic random variable and $a>0$ a number, the event $\{|X|>a\}$ can be written as $\{X>a\} \cup \{X<-a\}$ (which are clearly disjoint events). Hence $\Pr[|X|>a] = \Pr[X>a] + \Pr[X<-a] \geq \Pr[X>a]$ (since probabilities are non-negative quantities).
+
+This proves the first part of the problem.
+
+Now, considering the given bound, we can write that
+%
+\begin{equation}
+\begin{split}
+P_e^{(n)} \leq& \Pr[d(X^n(1),Y^n)>n(p+\varepsilon) | M=1] +\\
+	&(2^{nR}-1) \Pr[d(X^n(2),Y^n) \leq n(p+\varepsilon) | M=1] \\
+\leq& \Pr[d(X^n(1),Y^n)>n(p+\varepsilon) | M=1] + (2^{nR}-1)2^{-n(1-H(p+\varepsilon))}\\
+\leq& \Pr[d(X^n(1),Y^n)>n(p+\varepsilon) | M=1] + 2^{-n(1-H(p+\varepsilon)-R)}
+\xrightarrow{n\rightarrow \infty} 0
+\end{split}
+\end{equation}
+%
+if $R<1-H(p+\varepsilon)$. Since we know that the bound holds $\forall \varepsilon>0$ we obtain the result for any $R<C=1-H(p+\varepsilon)$.
+
+\numberwithin{equation}{section}
