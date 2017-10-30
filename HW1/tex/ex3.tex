@@ -1,6 +1,6 @@
 \section{Problem 3.5}
-
-\subsection{3.5(a)}
+\numberwithin{equation}{subsection}
+\subsection{MLD - minimum distance equivalence}
 Let's define
 %
 \begin{equation}
@@ -32,9 +32,9 @@ Using the natural logarithm (which is a strictly monotonically increasing functi
 %
 where in $(a)$ we noted that the factor $n \log p$ doesn't depend on $m$, hence it can be neglected, in $(b)$ again we neglect the constant positive term (by assumption $p<\frac{1}{2}$), in $(c)$ we apply a strictly monotonically decreasing function ($x \rightarrow n-x$ with a given $n$), hence we need to search for a minimum instead of a maximum. The last equality has already been discussed at the beginning of the section.
 
-\subsection{3.5(b)}
+\subsection{Error bound}
 
-\subsection{3.5(c)}
+\subsection{Achievability result}
 
 First, we want to show that
 %
@@ -61,3 +61,21 @@ From here and from Eq.~\eqref{eq:3.5c_goal} we cam rearrange terms
 \end{equation}
 %
 where the inequality comes from the fact that, considering $X$ a generic random variable and $a>0$ a number, the event $\{|X|>a\}$ can be written as $\{X>a\} \cup \{X<-a\}$ (which are clearly disjoint events). Hence $\Pr[|X|>a] = \Pr[X>a] + \Pr[X<-a] \geq \Pr[X>a]$ (since probabilities are non-negative quantities).
+
+This proves the first part of the problem.
+
+Now, considering the given bound, we can write that
+%
+\begin{equation}
+\begin{split}
+P_e^{(n)} \leq& \Pr[d(X^n(1),Y^n)>n(p+\varepsilon) | M=1] +\\
+	&(2^{nR}-1) \Pr[d(X^n(2),Y^n) \leq n(p+\varepsilon) | M=1] \\
+\leq& \Pr[d(X^n(1),Y^n)>n(p+\varepsilon) | M=1] + (2^{nR}-1)2^{-n(1-H(p+\varepsilon))}\\
+\leq& \Pr[d(X^n(1),Y^n)>n(p+\varepsilon) | M=1] + 2^{-n(1-H(p+\varepsilon)-R)}
+\xrightarrow{n\rightarrow \infty} 0
+\end{split}
+\end{equation}
+%
+if $R<1-H(p+\varepsilon)$. Since we know that the bound holds $\forall \varepsilon>0$ we obtain the result for any $R<C=1-H(p+\varepsilon)$.
+
+\numberwithin{equation}{section}
