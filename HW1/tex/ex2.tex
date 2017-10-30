@@ -65,10 +65,32 @@ Now we want to compute the \textit{energy-per-bit-rate function} $E_b(R)$ in the
 		R \leq \frac{1}{2} \cdot \log\big( 1 + g_2^2P \big) \Leftrightarrow P < \frac{1}{g_1^2} - \frac{1}{g_2^2}
 		\label{1case}
 \end{equation}
+
+
 \begin{equation}
 		R \leq \frac{1}{2} \cdot \sum_{j=1}^2 \log\Big(\frac{g_j^2}{2} \cdot \Big(P+\frac{1}{g_1^2} + \frac{1}{g_2^2}\Big)\Big) \Leftrightarrow P \geq \frac{1}{g_1^2} - \frac{1}{g_2^2}
 		\label{2case}
 \end{equation}
+
+Supponing to achieve the maximum rate in both \eqref{1case} and \eqref{2case} we can compute R in function of P and then write again the boundaries condition as follows.
+
+\begin{equation}
+	\begin{gathered}
+		R \leq \frac{1}{2} \cdot \log\big( 1 + g_2^2P \big) \\
+		\Rightarrow \frac{2^{2R}-1}{g_2^2} \leq P < \frac{1}{g_1^2} - \frac{1}{g_2^2} \\
+		\Rightarrow R < \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big)
+	\end{gathered}
+	\label{bound1}
+\end{equation}
+
+\begin{equation}
+	\begin{gathered}
+		R \leq \frac{1}{2} \cdot \sum_{j=1}^2 \log\Big(\frac{g_j^2}{2} \cdot \Big(P+\frac{1}{g_1^2} + \frac{1}{g_2^2}\Big)\Big) \\
+		\Rightarrow P \geq \frac{2^{R+1}}{g_1g_2} -\frac{1}{g_1^2} - \frac{1}{g_2^2}
+	\end{gathered}
+	\label{bound2}
+\end{equation}
+
 
 Let's first consider the case where only one channel is opened. Sobstituting $P=E \cdot R$ in \eqref{1case} we get what follows.
 

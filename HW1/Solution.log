@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  30 OCT 2017 13:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.4.20)  30 OCT 2017 14:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -380,10 +380,10 @@ ine 44.
  [2 <./img/func_info_ex1-eps-converted-to.pdf>]) (./tex/ex2.tex [3] [4]) [5] (.
 /Solution.aux) ) 
 Here is how much of TeX's memory you used:
- 3482 strings out of 494820
- 46123 string characters out of 6178154
- 120681 words of memory out of 5000000
- 6697 multiletter control sequences out of 15000+600000
+ 3484 strings out of 494820
+ 46139 string characters out of 6178154
+ 118699 words of memory out of 5000000
+ 6699 multiletter control sequences out of 15000+600000
  13433 words of font info for 54 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
  39i,12n,43p,440b,234s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -399,7 +399,7 @@ onts/cm/cmr6.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 /texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2
 016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2016/texmf
 -dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Solution.pdf (5 pages, 171517 bytes).
+Output written on Solution.pdf (5 pages, 172561 bytes).
 PDF statistics:
  75 PDF objects out of 1000 (max. 8388607)
  53 compressed objects within 1 object stream
