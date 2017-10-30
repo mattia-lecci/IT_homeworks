@@ -16,3 +16,18 @@ In the case of a memoryless channel, the MLD works as follows:
 \end{equation}
 %
 where the last equality comes from the fact that the Binary Symmetric Channel (BSC) only cares about whether a symbol is correctly or incorrectly transmitted. Assuming that $x^n(m)$ is sent and $y^n$ is received, there will be $N(m)$ correctly transmitted bits (each w.p. $(1-p)$ and $n-N(m)$ errors (each w.p. $p$).
+
+Using the natural logarithm (which is a strictly monotonically increasing function) we obtain
+%
+\begin{align}
+\begin{split}
+\hat{m} =& \argmax_m N(m)\log(1-p) + (n-N(m)) \log p\\
+\eqtext{(a)}& \argmax_m N(m)\log(1-p) -N(m) \log p\\
+=& \argmax_m N(m)\log\left( \frac{1-p}{p} \right)\\
+\eqtext{(b)}& \argmax_m N(m)\\
+\eqtext{(c)}& \argmin_m n-N(m)\\
+=& \argmin_m d( x^n(m),y^n)
+\end{split}
+\end{align}
+%
+where in $(a)$ we noted that the factor $n \log p$ doesn't depend on $m$, hence it can be neglected, in $(b)$ again we neglect the constant positive term (by assumption $p<\frac{1}{2}$), in $(c)$ we apply a strictly monotonically decreasing function ($x \rightarrow n-x$ with a given $n$), hence we need to search for a minimum instead of a maximum. The last equality has already been discussed at the beginning of the section.
