@@ -129,19 +129,12 @@ Now we want to show that the function \eqref{epbfunction} is strictly monotonica
 \end{figure}
 
 
-Now we want to compute the minimum energy-per-bit as $R \rightarrow 0$. We notice that for low values of $R$ we find ourself in the case where only one of the two channels is opened. Then to compute $\lim_{R \rightarrow 0} E_b(R)$ we procede as follows.
+Now we want to compute the minimum energy-per-bit as $R \rightarrow 0$. We notice that for low values of $R$ we find ourself in the case where only one of the two channels is opened. We conclude that the minimum energy-per-bit as $R \rightarrow 0$ is equal to \eqref{emin}.
 
 \begin{equation}
 	\lim_{R \rightarrow 0} E_b(R) =
 		\lim_{R \rightarrow 0} \Big(\frac{2^{2R}-1}{g_2^2 R}\Big) = \lim_{R \rightarrow 0} \frac{ \frac{d(2^{2R}-1)}{dR}} {\frac{dg_2^2 R}{dR}}=\frac{2\ln{2}}{g_2^2}
-\end{equation}
-
-We conclude that the minimum energy-per-bit as $R \rightarrow 0$ is equal to \eqref{emin}.
-
-\begin{equation}
-	\lim_{R \rightarrow 0} E_b(R) =
-		\frac{2\ln{2}}{g_2^2}
-\label{emin}
+		\label{emin}
 \end{equation}
 
 \numberwithin{equation}{section}
