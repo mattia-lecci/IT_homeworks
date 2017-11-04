@@ -1,9 +1,57 @@
 %\section*{Problem 3.14}
 \mysection{3.14}{Problem 3.14}
+
+\newcommand{\typical}{\ensuremath{\mathcal{T}_\varepsilon^{(n)}}}
+\newcommand{\typicalLong}{\ensuremath{\mathcal{T}_\varepsilon^{(n)}(X^n,Y^n)}}
+
+We decided to use the following coding/decoding scheme: the coder simply encodes the message $M$ into the codeword $X^n(M)$ like in the normal case seen in class. The decoder, instead, looks at all possible codewords $X^n(m) \; \forall m\in \mathcal{M}$ and looks whether or not they are typical and creates $\mathcal{L}(Y^n) = \typicalLong$ if $|\typical| \leq 2^{nL}$ or $\mathcal{L}(Y^n)=\emptyset$ if $|\typical| > 2^{nL}$.
+
 \numberwithin{equation}{subsection}
-
 \subsection{Achievability}
+Using the coder/decoder description given at the beginning of the section, the error probability can be written as
+%
+\begin{align}
+\begin{split}
+P_e^{(n)}=&E_\mathcal{C}[P_{e,\mathcal{C}}^n] = \Pr( M\notin \mathcal{L}(Y^n) |M=1 )\\
+=& \Pr( \{(X^n(1),Y^n)\notin\typical| M=1\} \cup \{ |\typical|>2^{nL} \}|M=1)\\
+\leq& \Pr((X^n(1),Y^n)\notin\typical|M=1) + \Pr(|\typical|>2^{nL}|M=1)\\
+\triangleq& \Pr(\mathcal{E}_1) + \Pr(\mathcal{E}_2)
+\end{split}
+\end{align}
 
+As seen in class, by the conditional typicality lemma $P(\mathcal{E}_1) \xrightarrow{n\rightarrow\infty}0$. All the effort, once again, will be focused on creating appropriate bounds for $\Pr(\mathcal{E}_2)$ as follows
+%
+\begin{align} \label{eq:3.14_E2}
+\begin{split}
+\Pr(\mathcal{E}_2) =& \Pr(|\typicalLong|>2^{nL}|M=1)\\
+ \leq& \Pr(|\typicalLong| \geq 2^{nL}|M=1)\\
+\leq& \frac{E \qty[\qty|\typicalLong| \,|M=1]}{2^{nL}}
+\end{split}
+\end{align}
+%
+where the last inequality follows from Markov's Inequality.
+
+Now, we can bound the mean cardinality of the typicality set as follows:
+%
+\begin{align} \label{eq:3.14_expectation_bound}
+\begin{split}
+E \qty[\qty|\typicalLong| \,|M=1] =& E\qty[ \sum_{m=1}^{2^{nR}} \indicator((X^n(m),Y^n) \in \typical) |M=1 ]\\
+=& \sum_{m=1}^{2^{nR}} E[\indicator((X^n(m),Y^n)\in \typical |M=1)]\\
+=& \sum_{m=1}^{2^{nR}} \Pr((X^n(m),Y^n)\in \typical |M=1)\\
+\leq& \Pr((X^n(1),Y^n)\in \typical |M=1) +\\
+&\sum_{m=2}^{2^{nR}} \Pr((X^n(m),Y^n)\in \typical |M=1)\\
+\leq& 1 + (2^{nR}-1)2^{-n(I(X;Y)-\delta(\varepsilon))}\\
+\leq& 1 + 2^{-n(C-R - \delta(\varepsilon))}
+\end{split}
+\end{align}
+
+Now, joining Eqs.~\eqref{eq:3.14_expectation_bound},~\eqref{eq:3.14_E2} we obtain
+%
+\begin{equation}
+\Pr(\mathcal{E}_2) \leq 2^{-nL} + 2^{-n(C+L-R - \delta(\varepsilon))}
+\end{equation}
+%
+which tends to zero if $R<C+L$.
 
 \subsection{Converse}
 We will start showing the modified Fano's Inequality.
