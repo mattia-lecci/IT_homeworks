@@ -4,20 +4,28 @@
 \usepackage{amsmath,amssymb,amsthm,mathrsfs}
 \usepackage{epsfig,epsf,subfigure,graphicx,graphics}
 \usepackage{url,enumerate}
-\usepackage{physics,dsfont}
+\usepackage{physics,dsfont,ragged2e}
 \graphicspath{{fig/}}
 \usepackage{fancyhdr}
 \setlength{\headheight}{12pt}
 \pagestyle{fancyplain}
 
 \numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}
 
 % definitions/operators
 \DeclareMathOperator*{\argmax}{arg\,max\;}
 \DeclareMathOperator*{\argmin}{arg\,min\;}
-\newcommand{\eqtext}[1]{\ensuremath{\stackrel{#1}{=}}}
-\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\newcommand{\eqtext}[1]{\ensuremath{\stackrel{#1}{=}}} % equal sign with some text over it
+\newcommand{\mysection}[1]{\renewcommand{\thesection}{#1}\section}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}} % to use letters for subsections
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}} % see next one
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}} % to have independet symbol
 
+
+\usepackage{glossaries}
+
+\newcommand{\x}[1]{d(X^n(#1),Y^n)}
 \rhead{}
 \lhead{}
 \chead{{\it Network Information Theory}}
@@ -33,6 +41,7 @@
 
 
 %% execises
+\justify
 \input{tex/ex1.tex}
 \input{tex/ex3.tex} %%%%%%%% fix!!
 \input{tex/ex2.tex} %%%%%%%%

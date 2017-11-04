@@ -1,1 +1,84 @@
-\section{Problem 3.20}
+%\section{Problem 3.20}
+\mysection{3.20}{Problem 3.20}
+
+First of all, I'm not sure about the power constrain givens by the exercise. I think either the $1/n$ factor on the LHS term or the $n$ factor on the RHS term should be neglected, giving
+%
+\begin{equation}\label{eq:myPowerBound}
+\frac{1}{n} \sum_{i=1}^n E[x_i^2(U^n)] \leq P
+\end{equation}
+
+Thus, for the following results I'm going to use Eq.~\eqref{eq:myPowerBound} instead of the one given by the exercise.
+
+\numberwithin{equation}{subsection}
+\subsection{Separate source/channel coding}
+We are asked to find the minimum distortion achieved by separate source and channel coding.
+
+We know that in order to achieve the lowest possible distortion we need to increase the rate of the source coding. There is a limit to this, though: from Shannon's channel coding theorem we know that exceeding the capacity of the channel will make it impossible to obtain (asymptotically) no errors.
+
+Looking at a single symbol $X_i$ at a time, then, from Eq.~\eqref{eq:myPowerBound} and the channel model $Y=gX+Z$ we obtain $C= \frac{1}{2} \log_2(1+g^2P)$ (well known capacity for Gaussian channel with bound input power).
+
+Since we are looking for the minimum possible distortion we will assume to reach capacity, i.e. $R=C$.
+
+We refer Theorem~3.7 of the book:
+%
+\begin{theorem}[Source-Channel Separation Theorem]
+Given a DMS U and a distortion measure $d(u,\hat{u})$ with rate-distortion function $R(D)$ and a DMC $p(y|x)$ with capacity C, the following statement hold:
+\begin{itemize}
+	\item If $rR(D)<C$, then $(r,D)$ is achievable
+	\item If $(r,D)$ is achievable, then $rR(D) \leq C$
+\end{itemize}
+Where $r=\frac{\mbox{\#symbols to transmit}}{\mbox{\#transmission to use}}$
+\end{theorem}
+In our case we use $r=1$, thus we could try to achieve the minimum distortion by setting $R(D)=C$.
+
+From Theorem~3.6 we see that the rate-distortion function for a $WGN(P)$ source with mean squared error distance is
+%
+\begin{equation}
+R(D) = \frac{1}{2} \qty[\log_2 \frac{P}{D}]^+
+\end{equation}
+
+Using all of these results we can say
+%
+\begin{align}
+\begin{split}
+&R(D)=C\\
+&\frac{1}{2} \qty[\log_2 \frac{P}{D}]^+ = \frac{1}{2} \log_2(1+g^2P) \\
+&\frac{P}{D} = 1+g^2P \qquad\qquad \mbox{if } \frac{P}{D} \geq 1\\
+&D= \frac{P}{1+g^2P}
+\end{split}
+\end{align}
+%
+noting that $P/D \geq 1 \; \forall g>0$.
+
+\subsection{Linear MMSE}
+From MMSE estimator theory we know that
+%
+\begin{equation}
+\hat{X} = E[X|Y] = aY+b
+\end{equation}
+%
+where $a,b$ are real numbers. In fact, for Gaussian estimation, the linear estimator achieve optimal results. It can also easily be written in close form. In the univariate case we have:
+%
+\begin{equation}
+\hat{X} = \frac{\sigma_{XY}}{\sigma_Y} (Y-E[Y]) + E[X] = \frac{\sigma_{XY}}{\sigma_Y^2} Y
+\end{equation}
+%
+since $X=U$ comes from the $WGN(P)$ source (by definition it has zero mean), and $E[Y]=E[gX+Z] = gE[X]+E[Z] = 0$. It is also simple to compute $\sigma_Y^2 = E[(Y-E[Y])^2] = E[Y^2] = g^2P+1$ since $X\independent Y$. Similarly, $\sigma_{XY} = E[(X-E[X])(Y-E[Y])] = E[XY] = E[gX^2+XZ] = gP$.\\
+Hence, we can write $\hat{X} = \frac{gP}{1+g^2P}Y$.
+
+Finally, we can write the distortion as
+%
+\begin{align}
+\begin{split}
+D =& E[d(X,\hat{X})] = E[(X-\hat{X})^2] = E \qty[\qty(X-\frac{gP}{1+g^2P}Y)^2]\\
+=& E \qty[\qty( X \qty(1-\frac{g^2P}{1+g^2P}) - \frac{gP}{1+g^2P}Z)^2]\\
+=& E \qty[\qty( \frac{1}{1+g^2P}X)^2] + E\qty[\qty( \frac{gP}{1+g^2P}Z)^2] - 2E\qty[ \frac{1}{1+g^2P}X \frac{gP}{1+g^2P}Z ]\\
+=& \frac{P}{(1+g^2P)^2} + \frac{g^2P^2}{(1+g^2P)^2} = \frac{P(1+g^2P)}{(1+g^2P)^2} = \frac{P}{1+g^2P}
+\end{split}
+\end{align}
+
+Note that it's the same as the lower bound on the distorsion from part $(a)$.
+
+\textbf{\textit{\Huge Comments}}
+
+\numberwithin{equation}{section}
