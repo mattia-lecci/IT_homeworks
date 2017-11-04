@@ -97,10 +97,35 @@ Knowing that $P = E \cdot R$ we define the \textit{energy-per-bit-rate function}
 \begin{equation} E_b(R)=
 	\begin{cases}
 		\frac{1}{R}\Big(\frac{2^{2R}-1}{g_2^2}\Big) \quad R < \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big) \\
-		\frac{1}{R} \Big(\frac{2^{R+1}}{g_1g_2} -\frac{1}{g_1^2} - \frac{1}{g_2^2} \Big)  \quad R \geq \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big)
+		\frac{1}{R} \Big(\frac{2^{R+1}}{g_1g_2} -\frac{1}{g_1^2} - \frac{1}{g_2^2} \Big) \quad R \geq \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big)
 	\end{cases}
 	\label{epbfunction}
 \end{equation}
+
+Now we want to show that the function \eqref{epbfunction} is strictly monotonically increasing and convex on $R$. To do so we first compute the first and the second derivates of the function itself.
+
+\begin{equation}
+	E'_b(R)= \begin{cases}
+		\frac{1}{R^2g_2^2}\cdot \Big(2^{2R}(2R\ln(2)-1)+1\Big) \quad R < \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big) \\
+		\frac{1}{R^2g_1^2 g_2^2} \Big(2^{R+1} g_1 g_2 ( R \ln(2)-1)+g_1^2+g_2^2 \Big) \quad R \geq \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big)
+\end{cases}
+\end{equation}
+
+\begin{equation}
+	E''_b(R)= \begin{cases}
+		\frac{1}{R^3g_2^2} \Big(2^{2R}(4R^2\ln(2)^2 -2R \ln(2)+1)-1\Big)  \quad R < \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big) \\
+		\frac{1}{R^3 g_1 g_2} \Big( 2^{R+1} g_1 g_2 ( R^2 \ln(2)^2 - R \ln(2) +1 ) -g_1^2 -g_2^2 \Big) \quad R \geq \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big)
+
+\end{cases}
+\end{equation}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\linewidth]{img/energy_per_bit_1.eps}
+	\caption{$E_b(R)$, $E'_b(R)$, $E''_b(R)$ for $R < \frac{1}{2} \log\Big(\frac{g_2^2}{g_1^2}\Big)$ }
+	\label{fig:funcex2}
+\end{figure}
+
 
 Now we want to compute the minimum energy-per-bit as $R \rightarrow 0$. We notice that for low value of $R$ we find ourself in the case where only one of the two channels id opened. Then for compute $\lim_{R \rightarrow 0} E_b(R)$ we procede as follows.
 
