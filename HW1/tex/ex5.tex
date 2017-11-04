@@ -1,13 +1,13 @@
 %\section{Problem 3.20}
 \mysection{3.20}{Problem 3.20}
 
-First of all, I'm not sure about the power constrain givens by the exercise. I think either the $1/n$ factor on the LHS term or the $n$ factor on the RHS term should be neglected, giving
+First of all, we are not sure about the power constrain givens by the exercise. We think that either the $1/n$ factor on the LHS term or the $n$ factor on the RHS term should be neglected, giving
 %
 \begin{equation}\label{eq:myPowerBound}
 \frac{1}{n} \sum_{i=1}^n E[x_i^2(U^n)] \leq P
 \end{equation}
 
-Thus, for the following results I'm going to use Eq.~\eqref{eq:myPowerBound} instead of the one given by the exercise.
+Thus, for the following results we are going to use Eq.~\eqref{eq:myPowerBound} instead of the one given by the exercise.
 
 \numberwithin{equation}{subsection}
 \subsection{Separate source/channel coding}
@@ -39,7 +39,7 @@ R(D) = \frac{1}{2} \qty[\log_2 \frac{P}{D}]^+
 
 Using all of these results we can say
 %
-\begin{align}
+\begin{align}\label{eq:3.20a_D}
 \begin{split}
 &R(D)=C\\
 &\frac{1}{2} \qty[\log_2 \frac{P}{D}]^+ = \frac{1}{2} \log_2(1+g^2P) \\
@@ -48,7 +48,7 @@ Using all of these results we can say
 \end{split}
 \end{align}
 %
-noting that $P/D \geq 1 \; \forall g>0$.
+noticing that $P/D \geq 1 \; \forall g>0$.
 
 \subsection{Linear MMSE}
 From MMSE estimator theory we know that
@@ -57,7 +57,7 @@ From MMSE estimator theory we know that
 \hat{X} = E[X|Y] = aY+b
 \end{equation}
 %
-where $a,b$ are real numbers. In fact, for Gaussian estimation, the linear estimator achieve optimal results. It can also easily be written in close form. In the univariate case we have:
+where $a,b$ are real numbers. In fact, for Gaussian estimation, the linear estimator achieves optimal results. It can also easily be written in close form. In the univariate case we have:
 %
 \begin{equation}
 \hat{X} = \frac{\sigma_{XY}}{\sigma_Y} (Y-E[Y]) + E[X] = \frac{\sigma_{XY}}{\sigma_Y^2} Y
@@ -77,7 +77,7 @@ D =& E[d(X,\hat{X})] = E[(X-\hat{X})^2] = E \qty[\qty(X-\frac{gP}{1+g^2P}Y)^2]\\
 \end{split}
 \end{align}
 
-Note that it's the same as the lower bound on the distorsion from part $(a)$.
+Note that it's the same as the lower bound on the distortion from Eq.~\eqref{eq:3.20a_D}.
 
 \textbf{\textit{\Huge Comments}}
 
