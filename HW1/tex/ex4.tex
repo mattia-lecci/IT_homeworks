@@ -8,7 +8,7 @@
 \subsection{Converse}
 We will start showing the modified Fano's Inequality.
 
-We are interested in the error probability defined as $P_e^{(n)} = \Pr(M \notin \mathcal{L}(Y^n))$. For this, similarly to the proof of Fano's Inequality seen in class, we define the random variable $\mathcal{E}$ such that $\mathcal{E}=0$ if $M \in \mathcal{L}$, $\mathcal{E}=1$ if $m \notin \mathcal{L}$. This implies that $E[\mathcal{E}] = P_e^{(n)}$ and $H(\mathcal{E}) = H(P_e^{(n)})$. Again, following the same procedure we obtain
+We are interested in the error probability defined as $P_e^{(n)} = \Pr(M \notin \mathcal{L}(Y^n))$. For this, similarly to the proof of Fano's Inequality seen in class, we define the random variable $\mathcal{E}$ such that $\mathcal{E}=0$ if $M \in \mathcal{L}$, $\mathcal{E}=1$ if $M \notin \mathcal{L}$. This implies that $E[\mathcal{E}] = P_e^{(n)}$ and $H(\mathcal{E}) = H(P_e^{(n)})$. Again, following the same procedure we obtain
 %
 \begin{equation}
 H(M|\mathcal{L}) = H(\mathcal{E}|\mathcal{L})
@@ -16,7 +16,7 @@ H(M|\mathcal{L}) = H(\mathcal{E}|\mathcal{L})
 -H(\mathcal{E}|M,\mathcal{L})
 \end{equation}
 
-Now, clearly $H(E|M,\mathcal{L})=0$ since once we know the message $M$ and the list $\mathcal{L}$, we deterministically know the value of $\mathcal{E}$. Furthermore, $H(\mathcal{E}|\mathcal{L}) \leq H(\mathcal{E}) = H(P_e^{(n)})$ due to the conditional entropy property. Finally, we can write $H(M|\mathcal{E},\mathcal{L}) = P_e^{(n)} H(M|\mathcal{E}=1,\mathcal{L}) + (1-P_e^{(n)})H(M|\mathcal{E}=0,\mathcal{L})$. Now, if $\mathcal{E}=0$ it means that $M \in \mathcal{L}$, thus knowing both this and $\mathcal{L}$ means that $M$ could be any of the messages in the list, i.e. $H(M|\mathcal{L},\mathcal{E}=0) = \log_2|\mathcal{L}|$. Similarly, if $M \notin \mathcal{L}$ it must be one of the other $|\mathcal{M}|-|\mathcal{L}|$ messages, i.e. $H(M|\mathcal{L},M\notin \mathcal{L})=\log_2(|\mathcal{M}|-|\mathcal{L}|)$.
+Now, clearly $H(\mathcal{E}|M,\mathcal{L})=0$ since once we know the message $M$ and the list $\mathcal{L}$, we deterministically know the value of $\mathcal{E}$. Furthermore, $H(\mathcal{E}|\mathcal{L}) \leq H(\mathcal{E}) = H(P_e^{(n)})$ due to the conditional entropy property. Finally, we can write $H(M|\mathcal{E},\mathcal{L}) = P_e^{(n)} H(M|\mathcal{E}=1,\mathcal{L}) + (1-P_e^{(n)})H(M|\mathcal{E}=0,\mathcal{L})$. Now, if $\mathcal{E}=0$ it means that $M \in \mathcal{L}$, thus knowing both this and $\mathcal{L}$ means that $M$ could be any of the messages in the list, i.e. $H(M|\mathcal{L},\mathcal{E}=0) = \log_2|\mathcal{L}|$. Similarly, if $M \notin \mathcal{L}$ it must be one of the other $|\mathcal{M}|-|\mathcal{L}|$ messages, i.e. $H(M|\mathcal{L},M\notin \mathcal{L})=\log_2(|\mathcal{M}|-|\mathcal{L}|)$.
 
 Bringing all together we get
 %
@@ -43,13 +43,13 @@ nR =& H(M)\\
 =&  I(M;Y^n) + H(M|Y^n)\\
 \stackrel{(a)}{\leq}& I(M;Y^n) + nL + n\varepsilon_n\\
 =& \sum_{i=1}^n I(M;Y_i|Y^{i-1}) + nL+n\varepsilon_n\\
-\stackrel{(b)}{=}& \sum_{i=1}^n I(M,Y^{i-1};Y_i) + nL+n\varepsilon_n\\
+\stackrel{(b)}{\leq}& \sum_{i=1}^n I(M,Y^{i-1};Y_i) + nL+n\varepsilon_n\\
 \stackrel{(c)}{=}& \sum_{i=1}^n I(M,X_i,Y^{i-1};Y_i) + nL+n\varepsilon_n\\
 \stackrel{(d)}{=}& \sum_{i=1}^n I(X_i;Y_i) + nL+n\varepsilon_n\\
 \leq& nC + nL+n\varepsilon_n
 \end{split}
 \end{align}
 %
-thus $R\leq C+L$ since $\varepsilon_n \xrightarrow{n\rightarrow\infty} 0$. In $(a)$ we used the fact that $\mathcal{L} \independent M |Y^n$ (or in Markov chain notation $M\rightarrow Y^n\rightarrow \mathcal{L}$), thus $H(M|Y^n)\leq H(M|\mathcal{L}) \leq nL + n\varepsilon_n$. In $(b)$ we used the conditioning rule $I(M,Y^{i-1};Y_i) = I(Y^{i-1};Y_i) + I(M;Y_i|Y^{i-1}) \geq I(M;Y_i|Y^{i-1})$. In $(c)$ we know that $X_i$ is a deterministic function of $M$ so it doesn't add or subtract any information. In $(d)$ we use exploit the memoryless property of the channel and the conditional independence $Y_i \independent (M,Y^{i-1})|X_i$.
+thus $R\leq C+L$ since $\varepsilon_n \xrightarrow{n\rightarrow\infty} 0$. In $(a)$ we used the fact that $\mathcal{L} \independent M |Y^n$ (or in Markov chain notation $M\rightarrow Y^n\rightarrow \mathcal{L}$), thus $H(M|Y^n)\leq H(M|\mathcal{L}) \leq nL + n\varepsilon_n$. In $(b)$ we used the conditioning rule $I(M,Y^{i-1};Y_i) = I(Y^{i-1};Y_i) + I(M;Y_i|Y^{i-1}) \geq I(M;Y_i|Y^{i-1})$. In $(c)$ we know that $X_i$ is a deterministic function of $M$ so it doesn't add or subtract any information. In $(d)$ we exploit the memoryless property of the channel and the conditional independence $Y_i \independent (M,Y^{i-1})|X_i$.
 
 \numberwithin{equation}{section}

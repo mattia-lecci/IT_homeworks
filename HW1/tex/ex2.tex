@@ -3,7 +3,7 @@
 
 \numberwithin{equation}{subsection}
 
-Is given a Gaussian product channel $Y_j = g_j \cdot X_j + Z_j$ $j\in \{1,2\}$ with $g_1 < g_2$ and average power constraint $P$. We want to know above what power $P^*$ we start to use both the channels and what are the features of the \textit{energy-per-bit-rate function} $E_b(R)$.
+A Gaussian product channel $Y_j = g_j \cdot X_j + Z_j$ $j\in \{1,2\}$ with $g_1 < g_2$ and average power constraint $P$ is given. We want to know above what power $P^*$ we start to use both the channels and what are the features of the \textit{energy-per-bit-rate function} $E_b(R)$.
 
 \subsection{Optimal power allocation}
 
@@ -62,7 +62,7 @@ We conclude that the second channel is opened for every amount of allocated powe
 
 \subsection{Energy-per-bit-rate function computation}
 
-Now we want to compute the \textit{energy-per-bit-rate function} $E_b(R)$ in the scenario previously described. We know that $P = R \cdot E$ where $R$ is the \textit{bit-rate} of the channel and $E$ is the used energy for every bit. In addiction we know that the \textit{bit-rate} is bounded by channel capacity as shown in \eqref{1case} and \eqref{2case}.
+Now we want to compute the \textit{energy-per-bit-rate function} $E_b(R)$ in the scenario previously described. We know that $P = R \cdot E$ where $R$ is the \textit{bit-rate} of the channel and $E$ is the used energy for every bit. In addition we know that the \textit{bit-rate} is bounded by channel capacity as shown in \eqref{1case} and \eqref{2case}.
 
 \begin{equation}
 		R \leq \frac{1}{2} \cdot \log\big( 1 + g_2^2P \big) \Leftrightarrow P < \frac{1}{g_1^2} - \frac{1}{g_2^2}
@@ -104,7 +104,7 @@ Knowing that $P = E \cdot R$ we define the \textit{energy-per-bit-rate function}
 	\label{epbfunction}
 \end{equation}
 
-Now we want to show that the function \eqref{epbfunction} is strictly monotonically increasing and convex on $R$. To do so we first compute the first and the second derivates of the function itself.
+Now we want to show that the function \eqref{epbfunction} is strictly monotonically increasing and convex on $R$. To do so we first compute the first and the second derivatives of the function itself.
 
 \begin{equation}
 	E'_b(R)= \begin{cases}
@@ -129,7 +129,7 @@ Now we want to show that the function \eqref{epbfunction} is strictly monotonica
 \end{figure}
 
 
-Now we want to compute the minimum energy-per-bit as $R \rightarrow 0$. We notice that for low value of $R$ we find ourself in the case where only one of the two channels id opened. Then for compute $\lim_{R \rightarrow 0} E_b(R)$ we procede as follows.
+Now we want to compute the minimum energy-per-bit as $R \rightarrow 0$. We notice that for low values of $R$ we find ourself in the case where only one of the two channels is opened. Then to compute $\lim_{R \rightarrow 0} E_b(R)$ we procede as follows.
 
 \begin{equation}
 	\lim_{R \rightarrow 0} E_b(R) =
