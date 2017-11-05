@@ -9,7 +9,7 @@ Let's define
 N(m) \triangleq \left|\{ i: y_i=x_i(m) \} \right|
 \end{equation}
 %
-Note that it is strictly related to to the hamming distance, in fact $d(x^n(m),y^n) = n-N(m)$.
+Note that it is strictly related to the hamming distance, in fact $d(x^n(m),y^n) = n-N(m)$.
 
 In the case of a memoryless channel, the MLD works as follows:
 %
@@ -17,45 +17,46 @@ In the case of a memoryless channel, the MLD works as follows:
 \hat{m} = \argmax_m \prod_{i=1}^{n} p_{Y|X}(y_i|x_i(m)) = \argmax_m (1-p)^{N(m)} p^{n-N(m)}
 \end{equation}
 %
-where the last equality comes from the fact that the Binary Symmetric Channel (BSC) only cares about whether a symbol is correctly or incorrectly transmitted. Assuming that $x^n(m)$ is sent and $y^n$ is received, there will be $N(m)$ correctly transmitted bits (each w.p. $(1-p)$ and $n-N(m)$ errors (each w.p. $p$).
+where the last equality comes from the fact that the Binary Symmetric Channel (BSC) only cares about whether a symbol is correctly or incorrectly transmitted. Assuming that $x^n(m)$ is sent and $y^n$ is received, there will be $N(m)$ correctly transmitted bits (each w.p. $(1-p)$) and $n-N(m)$ errors (each w.p. $p$).
 
-Using the natural logarithm (which is a strictly monotonically increasing function) we obtain
+Using the natural logarithm (which is a strictly monotonically increasing function, thus preserves the positions of maxima) we obtain
 %
 \begin{align}
 \begin{split}
-\hat{m} =& \argmax_m N(m)\log(1-p) + (n-N(m)) \log p\\
-\eqtext{(a)}& \argmax_m N(m)\log(1-p) -N(m) \log p\\
-=& \argmax_m N(m)\log\left( \frac{1-p}{p} \right)\\
+\hat{m} =& \argmax_m N(m)\ln(1-p) + (n-N(m)) \ln p\\
+\eqtext{(a)}& \argmax_m N(m)\ln(1-p) -N(m) \ln p\\
+=& \argmax_m N(m)\ln\left( \frac{1-p}{p} \right)\\
 \eqtext{(b)}& \argmax_m N(m)\\
 \eqtext{(c)}& \argmin_m n-N(m)\\
 =& \argmin_m d( x^n(m),y^n)
 \end{split}
 \end{align}
 %
-where in $(a)$ we noticed that the factor $n \log p$ doesn't depend on $m$, hence it can be neglected, in $(b)$ again we neglect the constant positive term (by assumption $p<\frac{1}{2}$), in $(c)$ we apply a strictly monotonically decreasing function ($x \rightarrow n-x$ with a given $n$), hence we need to search for a minimum instead of a maximum. The last equality has already been discussed at the beginning of the section.
+where in $(a)$ we noticed that the factor $n \ln p$ doesn't depend on $m$, hence it can be neglected, in $(b)$ again we neglect the constant positive term (by assumption $p<\frac{1}{2}$), in $(c)$ we apply a strictly monotonically decreasing function ($x \rightarrow n-x$ with a given $n$), hence we need to search for a minimum instead of a maximum. The last equality has already been discussed at the beginning of the section.
 
 \subsection{Error bound}
 
-Now we want to bound the error probability of MLD as follows.
-
+Now we want to bound the error probability of MLD as follows
+%
 \begin{equation}
 	\begin{aligned}
-	P_e^{(n)} & =P\{\hat{M}\neq 1 | M = 1\} \\
-	& = P \{ \exists \ m \neq 1 : \x{m} < \x{1} | M=1 \}\\
-	& \leq P \{ \x{1} >n(p+\epsilon)|M=1\}+(2^{nR}-1)P \{ \x{2} \leq n(p+\epsilon)|M=1\}
+	P_e^{(n)} =&P\{\hat{M}\neq 1 | M = 1\} \\
+	=& P \{ \exists \ m \neq 1 : \x{m} < \x{1} | M=1 \}\\
+	\leq& P \{ \x{1} >n(p+\epsilon)|M=1\}\\
+	&+(2^{nR}-1)P \{ \x{2} \leq n(p+\epsilon)|M=1\}
 	\end{aligned}
 	\label{eq:3.5bound}
 \end{equation}
 
-We notice that we are allowed to write $P_e^{(n)}  =P \{\hat{M}\neq 1 | M = 1\}$ since we are averaging the error probability over all possible \textit{codebooks}. Given $d \geq 0$ we define the following events.
-
+We notice that we are allowed to write $P_e^{(n)}  =P \{\hat{M}\neq 1 | M = 1\}$ since we are averaging the error probability over all possible \textit{codebooks}. Given an arbitrary $d \geq 0$ we define the following events:
+%
 \begin{gather*}
 	A = \Big \{ \x{1}>d | M = 1\Big \} \\
 	B = \Big \{ \forall \  m \neq 1 : \x{m}>d | M=1 \Big \} \\
  	C = \Big\{ \exists \ m \neq 1 : \x{m} < \x{1} | M=1 \Big \}
 \end{gather*}
 
-We notice that $C$ coincides to the error event. This implies that $P_e^{(n)}=P(C)$. Moreover we notice that if the events $B$ and $C$ are both verified, also the event $A$ is verified. This implies that $A$ is a superset of the intersection between $B$ and $C$ $\forall$ $d \geq 0$.
+We notice that $C$ coincides to the error event. This implies that $P_e^{(n)}=P(C)$. Moreover we notice that if the events $B$ and $C$ are both verified, also the event $A$ is verified. This implies that $A$ is a superset of  $B\cap C$ $\forall$ $d \geq 0$.
 
 \begin{equation}
 		A \supseteq B \cap C \quad \forall \  d\geq0
@@ -86,7 +87,7 @@ Now we call $\overline{B}$ the complementary event of  $B$.
  	\end{gathered}
  \end{equation}
 
-Now we notice that $1-P \{ B \cup C \}$ is always greater or equal to $0$ since $P \{ B \cup C \}$ is a probability. Then $-(1-P \{ B \cup C \})$ is always lower or equal to $0$ and we can write what follows.
+Now we notice that $1-P \{ B \cup C \}$ is always greater or equal than $0$ since $P \{ B \cup C \}$ is a probability. Then $-(1-P \{ B \cup C \})$ is always lower or equal to $0$ and we can write what follows.
 
 \begin{equation}
  \begin{gathered}
@@ -95,35 +96,35 @@ Now we notice that $1-P \{ B \cup C \}$ is always greater or equal to $0$ since 
 \label{eq:3.5diseq}
 \end{equation}
 
-Now we notice that $\overline{B}$ can be defined as an union of the events $\overline{B}_m$.
-
+Now we notice that $\overline{B}$ can be defined as a union of the events $\overline{B}_m$
+%
 \begin{equation}
 		\overline{B} = \bigcup _{m=2}^{2^{nR}} \overline{B}_m = \bigcup _{m=2}^{2^{nR}} \Big \{ \x{m} \leq d | M = 1\Big \}
 		\label{eq:3.5Bunion}
 \end{equation}
-
-Given \eqref{eq:3.5Bunion} we can bound $P\{ \overline{B}\}$ as follows.
-
+%
+which can be bounded as follows
+%
 \begin{equation}
 	P\{\overline{B} \} \leq \sum_{m=2}^{2^{nR}} P \{ \overline{B}_m \} = \sum_{m=2}^{2^{nR}} P \{ \x{m} \leq d | M = 1 \}
 	\label{eq:3.5Bsum}
 \end{equation}
 
-Since we are using \textit{random coding} the following statemente is always true:
-
+Since we are using \textit{random coding} the following statement is always true:
+%
 \begin{equation}
 	P \{ \x{m} \leq d | M = 1 \} = P \{ \x{2} \leq d | M = 1  \} \ \forall \ m \neq 1
 \end{equation}
 
 Then we can write \eqref{eq:3.5Bsum} as follows.
-
+%
 \begin{equation}
 	P\{\overline{B} \} \leq (2^{nR}-1) P \{ \x{2} \leq d | M = 1 \}
 	\label{eq:3.5Bbound}
 \end{equation}
 
-We remeber that $P_e^{(n)}=P(C)$. Therefore given \eqref{eq:3.5Bbound} and \eqref{eq:3.5diseq} we conclude that the following statement is true $\forall \  d \geq 0$.
-
+We remember that $P_e^{(n)}=P(C)$. Therefore given \eqref{eq:3.5Bbound} and \eqref{eq:3.5diseq} we conclude that the following statement is true $\forall \  d \geq 0$
+%
 \begin{equation}
 	\begin{gathered}
 		P_e^{(n)} \leq
@@ -131,14 +132,15 @@ We remeber that $P_e^{(n)}=P(C)$. Therefore given \eqref{eq:3.5Bbound} and \eqre
 	\end{gathered}
 \end{equation}
 
-Now we assign to $d$ the value $n(p+\epsilon)$, which is always greater or equal to zero $\forall \  \epsilon \geq 0$. Finally we get the requested bound.
-
-\begin{equation}
-	\begin{gathered}
-		P_e^{(n)} \leq
-		P \{ \x{1}> n(p+\epsilon) | M = 1 \} + (2^{nR}-1) P \{ \x{2} \leq n(p+\epsilon) | M = 1 \}
-	\end{gathered}
-\end{equation}
+Now we assign to $d$ the value $n(p+\epsilon)$, which is always greater or equal than $0$ $\forall \  \epsilon > 0$ and we finally get the requested bound
+%
+\begin{align}
+\begin{split}
+P_e^{(n)} \leq&
+P \{ \x{1}> n(p+\epsilon) | M = 1 \} \\
+&+ (2^{nR}-1) P \{ \x{2} \leq n(p+\epsilon) | M = 1 \}
+\end{split}
+\end{align}
 
 \subsection{Achievability result}
 
@@ -148,7 +150,7 @@ First, we want to show that
 \Pr[d(X^n(1),Y^n)>n(p+\varepsilon) | M=1] \xrightarrow{n\rightarrow \infty} 0
 \end{equation}
 
-Recalling the Weak Law of Large Number for iid random variables
+Recalling the Weak Law of Large Number for i.i.d. random variables $X_i$
 %
 \begin{equation}
 \lim_{n \rightarrow \infty} \Pr \qty( \qty|\frac{1}{n} \sum_{i=1}^{n} X_i - E[X]|> \varepsilon ) = 0
@@ -157,10 +159,10 @@ Recalling the Weak Law of Large Number for iid random variables
 we see that it's closely related to our case of study. In fact consider
 %
 \begin{equation}
-E[d(X^n(1),Y^n)] = E\qty[ \sum_{i=1}^{n} \indicator[Y_i(1) \neq Y_i] ] = \sum_{i=1}^n E[ \indicator[Y_i(1) \neq Y_i] ] = \sum_{i=1}^n p = np
+E[d(X^n(1),Y^n)] = E\qty[ \sum_{i=1}^{n} \indicator[X_i(1) \neq Y_i] ] = \sum_{i=1}^n E[ \indicator[X_i(1) \neq Y_i] ] = \sum_{i=1}^n p = np
 \end{equation}
 
-From here and from Eq.~\eqref{eq:3.5c_goal} we can rearrange terms
+From here and from Eq.~\eqref{eq:3.5c_goal}, since the indicator random variables are i.i.d. (due to random coding and memoryless channel), we can rearrange terms
 %
 \begin{equation}
 \Pr \qty[ \frac{1}{n} d(X^n(1),Y^n) - p > \varepsilon |M=1] \leq \Pr \qty[ \qty| \frac{1}{n} d(X^n(1),Y^n) - p| > \varepsilon] \xrightarrow{n\rightarrow \infty} 0
@@ -182,6 +184,6 @@ P_e^{(n)} \leq& \Pr[d(X^n(1),Y^n)>n(p+\varepsilon) | M=1] +\\
 \end{split}
 \end{equation}
 %
-if $R<1-H(p+\varepsilon)$. Since we know that the bound holds $\forall \varepsilon>0$ we obtain the result for any $R<C=1-H(p+\varepsilon)$.
+if $R<1-H(p+\varepsilon)$. Since we know that the bound holds $\forall \varepsilon>0$ and $H(p)$ is strictly monotonically increasing if $p<\frac{1}{2}$, we obtain the result for sure if $R<C=1-H(p)$.
 
 \numberwithin{equation}{section}
