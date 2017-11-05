@@ -15,7 +15,7 @@ We are asked to find the minimum distortion achieved by separate source and chan
 
 We know that in order to achieve the lowest possible distortion we need to increase the rate of the source coding. There is a limit to this, though: from Shannon's channel coding theorem we know that exceeding the capacity of the channel will make it impossible to obtain (asymptotically) no errors.
 
-Looking at a single symbol $X_i$ at a time, then, from Eq.~\eqref{eq:myPowerBound} and the channel model $Y=gX+Z$ we obtain $C= \frac{1}{2} \log_2(1+g^2P)$ (well known capacity for Gaussian channel with bound input power).
+Looking at a single symbol $X_i$ at a time, then, from Eq.~\eqref{eq:myPowerBound} and the channel model $Y=gX+Z$ we obtain $C= \frac{1}{2} \log_2(1+g^2P)$ (well known capacity for Gaussian channel with bounded input power).
 
 Since we are looking for the minimum possible distortion we will assume to reach capacity, i.e. $R=C$.
 
@@ -48,7 +48,7 @@ Using all of these results we can say
 \end{split}
 \end{align}
 %
-noticing that $P/D \geq 1 \; \forall g \geq 0$.
+noticing that $P/D \geq 1 \; \forall g \geq 0$. Since we assumed to reach capacity, this result is actually a lower bound, i.e. $D \geq \frac{P}{1+g^2P}$.
 
 \subsection{Linear MMSE}
 From MMSE estimator theory we know that
@@ -63,7 +63,7 @@ where $a,b$ are real numbers. In fact, for Gaussian estimation, the linear estim
 \hat{X} = \frac{\sigma_{XY}}{\sigma_Y} (Y-E[Y]) + E[X] = \frac{\sigma_{XY}}{\sigma_Y^2} Y
 \end{equation}
 %
-since $X=U$ comes from the $WGN(P)$ source (by definition it has zero mean), and $E[Y]=E[gX+Z] = gE[X]+E[Z] = 0$. It is also simple to compute $\sigma_Y^2 = E[(Y-E[Y])^2] = E[Y^2] = g^2P+1$ since $X\independent Y$. Similarly, $\sigma_{XY} = E[(X-E[X])(Y-E[Y])] = E[XY] = E[gX^2+XZ] = gP$.\\
+since $X=U$ comes from the $WGN(P)$ source (by definition it has zero mean), and $E[Y]=E[gX+Z] = gE[X]+E[Z] = 0$. It is also simple to compute $\sigma_Y^2 = E[(Y-E[Y])^2] = E[Y^2] = g^2P+1$ since $X\independent Z$. Similarly, $\sigma_{XY} = E[(X-E[X])(Y-E[Y])] = E[XY] = E[gX^2+XZ] = gP$.\\
 Hence, we can write $\hat{X} = \frac{gP}{1+g^2P}Y$.
 
 Finally, we can write the distortion as
