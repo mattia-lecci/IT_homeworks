@@ -7,8 +7,8 @@ Given a Z channel with probabilities $p_{Y|X}(0|0)=1$, $p_{Y|X}(1|0)=0$, $p_{Y|X
 	C = \max_{p_X} I(X;Y) = H(Y)-H(Y|X)
 \end{equation}
 
-First we compute $H(Y)$ in function of $p=p_X(1)$.
-
+First we compute $H(Y)$ in function of $p \triangleq p_X(1)$.
+%
 \begin{equation}
 \begin{aligned}
 	H(Y)= & -p_Y(1)\cdot\log(p_Y(1))-p_Y(0)\cdot\log(p_Y(0)) \\
@@ -18,12 +18,12 @@ First we compute $H(Y)$ in function of $p=p_X(1)$.
 \end{aligned}
 \end{equation}
 
-Then we compute $H(Y|X)$ always in function of $p=p_X(1)$.
-
+Then we compute $H(Y|X)$ always as a function of $p$
+%
 \begin{equation}
 \begin{aligned}
-	H(Y|X) = & -p_{YX}(0,0) \cdot \log (p_{Y|X}(0|0)) -p_{YX}(1,0) \cdot \log (p_{Y|X}(1|0)) \\
-	& -p_{YX}(0,1) \cdot \log (p_{Y|X}(0|1)) -p_{YX}(1,1) \cdot \log (p_{Y|X}(1|1)) \\ =
+	H(Y|X) = & -p_{Y,X}(0,0) \cdot \log (p_{Y|X}(0|0)) -p_{Y,X}(1,0) \cdot \log (p_{Y|X}(1|0)) \\
+	& -p_{Y,X}(0,1) \cdot \log (p_{Y|X}(0|1)) -p_{Y,X}(1,1) \cdot \log (p_{Y|X}(1|1)) \\ =
 	& -p_{Y|X}(0|0) \cdot p_X(0) \cdot \log (p_{Y|X}(0|0)) -p_{Y|X}(1|0) \cdot p_X(0) \cdot \log (p_{Y|X}(1|0)) \\
 	& -p_{Y|X}(0|1) \cdot p_X(1) \cdot \log (p_{Y|X}(0|1)) -p_{Y|X}(1|1) \cdot p_X(1) \cdot \log (p_{Y|X}(1|1)) \\ =	& 0 + 0 + \frac{1}{2} \cdot p + \frac{1}{2} \cdot p = p
 \end{aligned}
@@ -32,15 +32,15 @@ Then we compute $H(Y|X)$ always in function of $p=p_X(1)$.
 Now we are able to write $I(X;Y)$ in function of $p$ as we can see in \eqref{IXY}.
 
 \begin{equation}
-	I(X;Y) = -\frac{1}{2}\cdot p \cdot \log\Big(\frac{1}{2}\cdot p\Big)-\Big(1-\frac{1}{2}\cdot p\Big)\cdot \log \Big(1-\frac{1}{2}\cdot p\Big)-p
+	I(X;Y) = -\frac{p}{2} \log\Big(\frac{p}{2}\Big)-\Big(1-\frac{p}{2}\Big) \log \Big(1-\frac{p}{2}\Big)-p
 	\label{IXY}
 \end{equation}
 
 \pagebreak
 
-In \ref{fig:funcinfoex1} we show the function's trend for all possible values of $p$.
+In Fig.~\ref{fig:funcinfoex1} we show the function's trend for all possible values of $p$.
 
-\begin{figure}[h!]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width=0.7\linewidth]{img/func_info_ex1}
 	\caption{Mutual information as a function of $p \triangleq p_X(1)$}
@@ -49,20 +49,16 @@ In \ref{fig:funcinfoex1} we show the function's trend for all possible values of
 
 Now we want to find the value of $p$ for which \eqref{IXY} is maximized. For this purpose we compute the first and second order derivatives of $I(X;Y)$.
 
-\begin{equation}
-\begin{aligned}
-	\frac{dI(X;Y)}{dp}= &\frac{1}{2} \cdot \log \Big( 1 - \frac{p}{2}\Big)+ \frac{1}{2} \cdot \frac{1- \frac{p}{2}}{1-\frac{p}{2}} - \frac{1}{2} \cdot \log\Big ( \frac{p}{2}\Big)-\frac{p}{2} \cdot \frac{2}{p} \cdot \frac{1}{2} - 1 \\
-	= & \frac{1}{2} \cdot \log \Big ( \frac{2}{p} - 1\Big)-1
-	\end{aligned}
-	\end{equation}
+\begin{align}
+\begin{split}
+\frac{\dd{I(X;Y)}}{\dd{p}}= &\frac{1}{2} \cdot \log \Big( 1 - \frac{p}{2}\Big)+ \frac{1}{2} \cdot \frac{1- \frac{p}{2}}{1-\frac{p}{2}} - \frac{1}{2} \cdot \log\Big ( \frac{p}{2}\Big)-\frac{p}{2} \cdot \frac{2}{p} \cdot \frac{1}{2} - 1 \\
+= & \frac{1}{2} \cdot \log \Big ( \frac{2}{p} - 1\Big)-1
+\end{split}\\\nonumber\\
+%
+\frac{\dd[2]{I(X;Y)}}{\dd[2]{p}}=& \frac{1}{2}\cdot \frac{1}{\frac{2}{p}-1} \cdot 2(-p^{-2})= \frac{1}{p^2-2p}
+\end{align}
 
-\begin{equation}
-\begin{aligned}
-	\frac{d^2I(X;Y)}{dp^2}= \frac{1}{2}\cdot \frac{p}{2-p} \cdot \frac{1}{2}= \frac{1}{4} \cdot \frac{p}{2-p}
-\end{aligned}
-\end{equation}
-
-We notice that $\frac{d^2I(X;Y)}{dp^2}$ is always equal or greater than zero for every possibli value of p. This means that $I(X;Y)$ is a convex function and then the value of $p$ for which $\frac{dI(X;Y)}{dp}$ is zero coincides with the maximum point of $I(X;Y)$. Therefore we compute the values for which we have $\frac{dI(X;Y)}{dp}=0$.
+We compute the values for which we have $\frac{\dd{I(X;Y)}}{\dd{p}}=0$.
 
 \begin{equation}
 \begin{gathered}
@@ -73,12 +69,12 @@ We notice that $\frac{d^2I(X;Y)}{dp^2}$ is always equal or greater than zero for
 \end{gathered}
 \end{equation}
 
-So for $p=\frac{2}{5}$ we maximize $I(X;Y)$ and therefore we obtain the value of the channel capacity $C$. The value of $C$ is reported in \eqref{C}.
+So for $p=\frac{2}{5}$ we have a critical point of $I(X;Y)$. Note that for this value of $p$ the second derivative yields $-\frac{25}{16}$, meaning that the function is concave around this point and therefore it's actually a maximum. Since it's the maximum, we have that for $p_X(1)=\frac{2}{5}$ we reach capacity. The value of the capacity $C$ is reported in \eqref{C}.
 
 \begin{equation}
 \begin{aligned}
 	C = & I(X;Y)|_{p=\frac{2}{5}} \\ = &-\frac{4}{5} \cdot \log\Big (\frac{4}{5}\Big)- \frac{1}{5}\cdot\log \Big(\frac{1}{5}\Big)-\frac{2}{5} \\
-	= & \frac{1}{5} \cdot \log \Big (\frac{3125}{256} \Big)-\frac{2}{5}
+	= & \frac{1}{5} \cdot \log \Big (\frac{3125}{256} \Big)-\frac{2}{5} \approx 0.3219
 	\label{C}
 \end{aligned}
 \end{equation}
