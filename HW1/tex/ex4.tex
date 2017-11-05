@@ -4,7 +4,7 @@
 \newcommand{\typical}{\ensuremath{\mathcal{T}_\varepsilon^{(n)}}}
 \newcommand{\typicalLong}{\ensuremath{\mathcal{T}_\varepsilon^{(n)}(X^n,Y^n)}}
 
-We decided to use the following coding/decoding scheme: the coder simply encodes the message $M$ into the codeword $X^n(M)$ like in the normal case seen in class. The decoder, instead, looks at all possible codewords $X^n(m) \; \forall m\in \mathcal{M}$ and looks whether or not they are typical and creates $\mathcal{L}(Y^n) = \typicalLong$ if $|\typical| \leq 2^{nL}$ or $\mathcal{L}(Y^n)=\emptyset$ if $|\typical| > 2^{nL}$.
+We decided to use the following coding/decoding scheme: the coder simply encodes the message $M$ into the codeword $X^n(M)$ like in the normal case seen in class. The decoder, instead, looks at all possible codewords $X^n(m) \; \forall m\in \mathcal{M}$, looks whether or not they are typical and creates $\mathcal{L}(Y^n) = \typicalLong$ if $|\typical| \leq 2^{nL}$ or $\mathcal{L}(Y^n)=\emptyset$ if $|\typical| > 2^{nL}$.
 
 \numberwithin{equation}{subsection}
 \subsection{Achievability}
@@ -38,17 +38,19 @@ Now, we can bound the mean cardinality of the typicality set as follows:
 E \qty[\qty|\typicalLong| \,|M=1] =& E\qty[ \sum_{m=1}^{2^{nR}} \indicator((X^n(m),Y^n) \in \typical) |M=1 ]\\
 =& \sum_{m=1}^{2^{nR}} E[\indicator((X^n(m),Y^n)\in \typical |M=1)]\\
 =& \sum_{m=1}^{2^{nR}} \Pr((X^n(m),Y^n)\in \typical |M=1)\\
-\leq& \Pr((X^n(1),Y^n)\in \typical |M=1) +\\
-&\sum_{m=2}^{2^{nR}} \Pr((X^n(m),Y^n)\in \typical |M=1)\\
-\leq& 1 + (2^{nR}-1)2^{-n(I(X;Y)-\delta(\varepsilon))}\\
+\leq& \Pr((X^n(1),Y^n)\in \typical |M=1)\\
+& + \sum_{m=2}^{2^{nR}} \Pr((X^n(m),Y^n)\in \typical |M=1)\\
+\stackrel{(a)}{\leq}& 1 + (2^{nR}-1)2^{-n(I(X;Y)-\delta(\varepsilon))}\\
 \leq& 1 + 2^{-n(C-R - \delta(\varepsilon))}
 \end{split}
 \end{align}
+%
+where in $(a)$ we separated the probability of the first codeword to be typical with $Y^n$ since it has to be treated differently from the others (given the fact that actually $M=1$ was sent, so their probability of being jointly typical is higher than the rest) and we used the bound found in class for the rest of the codewords.
 
 Now, joining Eqs.~\eqref{eq:3.14_expectation_bound},~\eqref{eq:3.14_E2} we obtain
 %
 \begin{equation}
-\Pr(\mathcal{E}_2) \leq 2^{-nL} + 2^{-n(C+L-R - \delta(\varepsilon))}
+P_e^{(n)} = \Pr(\mathcal{E}_1) + \Pr(\mathcal{E}_2) \leq \Pr(\mathcal{E}_1) +  2^{-nL} + 2^{-n(C+L-R - \delta(\varepsilon))}
 \end{equation}
 %
 which tends to zero if $R<C+L$.
@@ -64,13 +66,19 @@ H(M|\mathcal{L}) = H(\mathcal{E}|\mathcal{L})
 -H(\mathcal{E}|M,\mathcal{L})
 \end{equation}
 
-Now, clearly $H(\mathcal{E}|M,\mathcal{L})=0$ since once we know the message $M$ and the list $\mathcal{L}$, we deterministically know the value of $\mathcal{E}$. Furthermore, $H(\mathcal{E}|\mathcal{L}) \leq H(\mathcal{E}) = H(P_e^{(n)})$ due to the conditional entropy property. Finally, we can write $H(M|\mathcal{E},\mathcal{L}) = P_e^{(n)} H(M|\mathcal{E}=1,\mathcal{L}) + (1-P_e^{(n)})H(M|\mathcal{E}=0,\mathcal{L})$. Now, if $\mathcal{E}=0$ it means that $M \in \mathcal{L}$, thus knowing both this and $\mathcal{L}$ means that $M$ could be any of the messages in the list, i.e. $H(M|\mathcal{L},\mathcal{E}=0) = \log_2|\mathcal{L}|$. Similarly, if $M \notin \mathcal{L}$ it must be one of the other $|\mathcal{M}|-|\mathcal{L}|$ messages, i.e. $H(M|\mathcal{L},M\notin \mathcal{L})=\log_2(|\mathcal{M}|-|\mathcal{L}|)$.
+Now, clearly $H(\mathcal{E}|M,\mathcal{L})=0$ since once we know the message $M$ and the list $\mathcal{L}$, we deterministically know the value of $\mathcal{E}$. Furthermore, $H(\mathcal{E}|\mathcal{L}) \leq H(\mathcal{E}) = H(P_e^{(n)})$ due to the conditional entropy property. Finally, we can write
+%
+\begin{equation}
+H(M|\mathcal{E},\mathcal{L}) = P_e^{(n)} H(M|\mathcal{E}=1,\mathcal{L}) + (1-P_e^{(n)})H(M|\mathcal{E}=0,\mathcal{L})
+\end{equation}
+%
+Now, if $\mathcal{E}=0$ it means that $M \in \mathcal{L}$, thus knowing both this and $\mathcal{L}$ means that $M$ could be any of the messages in the list, i.e. $H(M|\mathcal{L},\mathcal{E}=0) \leq \log_2|\mathcal{L}|$ (equal if the message is uniformly distributed). Similarly, if $M \notin \mathcal{L}$ it must be one of the other $|\mathcal{M}|-|\mathcal{L}|$ messages, i.e. $H(M|\mathcal{L},M\notin \mathcal{L}) \leq \log_2(|\mathcal{M}|-|\mathcal{L}|)$.
 
 Bringing all together we get
 %
 \begin{align}
 \begin{split}
-H(M|\mathcal{L}) \leq & H(Pe) + P_e^{(n)}\log_2(|\mathcal{M}|-|\mathcal{L}|) + (1-P_e^{(n)})\log_2|\mathcal{L}|\\
+H(M|\mathcal{L}) \leq & H(P_e^{(n)}) + P_e^{(n)}\log_2(|\mathcal{M}|-|\mathcal{L}|) + (1-P_e^{(n)})\log_2|\mathcal{L}|\\
 =& H(P_e^{(n)}) + \log_2|\mathcal{L}| + P_e^{(n)}\log_2\qty(\frac{|\mathcal{M}|-|\mathcal{L}|}{|\mathcal{L}|})\\
 =& H(P_e^{(n)}) + \log_2|\mathcal{L}| + P_e^{(n)}\log_2\qty(\frac{|\mathcal{M}|}{|\mathcal{L}|} - 1)\\
 \leq& 1 + \log_2|\mathcal{L}| + P_e^{(n)}\log_2\frac{|\mathcal{M}|}{|\mathcal{L}|}
