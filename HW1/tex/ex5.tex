@@ -60,7 +60,7 @@ From MMSE estimator theory we know that
 where $a,b$ are real numbers. In fact, for Gaussian estimation, the linear estimator achieves optimal results. It can also easily be written in close form. In the univariate case we have:
 %
 \begin{equation}
-\hat{X} = \frac{\sigma_{XY}}{\sigma_Y} (Y-E[Y]) + E[X] = \frac{\sigma_{XY}}{\sigma_Y^2} Y
+\hat{X} = \frac{\sigma_{XY}}{\sigma_Y^2	} (Y-E[Y]) + E[X] = \frac{\sigma_{XY}}{\sigma_Y^2} Y
 \end{equation}
 %
 since $X=U$ comes from the $WGN(P)$ source (by definition it has zero mean), and $E[Y]=E[gX+Z] = gE[X]+E[Z] = 0$. It is also simple to compute $\sigma_Y^2 = E[(Y-E[Y])^2] = E[Y^2] = g^2P+1$ since $X\independent Z$. Similarly, $\sigma_{XY} = E[(X-E[X])(Y-E[Y])] = E[XY] = E[gX^2+XZ] = gP$.\\
