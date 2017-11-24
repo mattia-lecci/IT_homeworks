@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+
+\usepackage[hmargin=2.5cm, vmargin={3cm,3cm}, a4paper]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage{epsfig,epsf,subfigure,graphicx,graphics}
+\usepackage{url,enumerate}
+\usepackage{physics,dsfont,ragged2e}
+\usepackage{glossaries}
+\graphicspath{{fig/}}
+\usepackage{fancyhdr}
+\setlength{\headheight}{12pt}
+\pagestyle{fancyplain}
+
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}
+
+% definitions/operators
+\DeclareMathOperator*{\argmax}{arg\,max\;}
+\DeclareMathOperator*{\argmin}{arg\,min\;}
+\newcommand{\x}[1]{d(X^n(#1),Y^n)}
+\newcommand{\indicator}{\mathds{1}}
+\newcommand{\eqtext}[1]{\ensuremath{\stackrel{#1}{=}}} % equal sign with some text over it
+\newcommand{\mysection}[1]{\renewcommand{\thesection}{#1}\section}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}} % to use letters for subsections
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}} % see next one
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}} % to have independet symbol
+
+
+\rhead{}
+\lhead{}
+\chead{{\it Network Information Theory}}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\title{Solution of Homework \#2}
+\author{Mattia Lecci \and Federico Mason \and Paolo Testolina}
+\begin{document}
+\maketitle
+\thispagestyle{fancyplain}
+\flushleft
+
+
+%% execises
+\justify
+For the solution of these homeworks we will always consider the function $\log(x)$ as $\log_2(x)$ for simplicity.
+
+\input{tex/ex1.tex}
+\input{tex/ex2.tex}
+\input{tex/ex3.tex}
+\input{tex/ex4.tex}
+\input{tex/ex5.tex}
+\input{tex/ex6.tex}
+\input{tex/ex7.tex}
+
+\end{document}
