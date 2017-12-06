@@ -1,1 +1,62 @@
 \mysection{6.6}{Problem 6.6}
+
+Let's consider the \textit{Discrete Memoryless Interference Channel} (DM-IC) $p(y_1,y_2|x_1,x_2)$. For a \textit{Successive Cancellation} decoding scheme we need each receiver to decode first the message intended to the other receiver, then decode its message with the additional (hopefully right) knowledge. Let's consider for now fixed probability distributions $p(x,y)=p(x)p(y)$.
+
+Looking at receiver 1, it first needs to decode message $M_2$. To do this, we know from the theory that if $R_2 < I(X_2;Y_1) - \delta(\varepsilon)$, then as $n \rightarrow \infty$ the probability of decoding it incorrectly vanishes. Once it knows the message from transmitter 2, it can decode its message with the additional information. Again, from the theory we know that if $R_1 < I(X_1;Y_1|X_2) - \delta(\varepsilon)$ the message will be asymptotically decoded almost surely. Note that adding the two conditions together we obtain
+%
+\begin{equation}
+R_1+R_2 < I(X_1;Y_1|X_2) + I(X_2;Y_1) = I(X_1,X_2;Y_1)
+\end{equation}
+%
+thus it's useless to add the condition on the sum-rate.
+
+To summarize, the conditions for the correct decoding of receiver 1 are:
+%
+\begin{equation}
+\begin{cases}
+	R_2 < I(X_2;Y_1) - \delta(\varepsilon)\\
+	R_1 < I(X_1;Y_1|X_2) - \delta(\varepsilon) 
+\end{cases}
+\end{equation}
+
+Similarly, for receiver 2 we have:
+%
+\begin{eqnarray}
+\begin{cases}
+	R_1 < I(X_1;Y_2) - \delta(\varepsilon)\\
+	R_2 < I(X_2;Y_2|X_1) - \delta(\varepsilon)
+\end{cases}
+\end{eqnarray}
+
+Thus, joining everything together and considering different distributions through the time-sharing variable $Q$, we obtain
+%
+\begin{equation}
+\begin{cases}
+	R_1 &< \min \qty{ I(X_1;Y_1|X_2,Q),I(X_1;Y_2|Q) }\\
+	R_2 &< \min \qty{ I(X_2;Y_1|Q), I(X_2;Y_2|X_1,Q) }\\
+	R_1+R_2 &< \min \qty{ I(X_1,X_2;Y_1|Q), I(X_1,X_2;Y_2|Q) }
+\end{cases}
+\label{eq:succ_canc_bound}
+\end{equation}
+%
+for some distribution $p(q)p(x_1|q)p(x_2|q)$.
+
+Note that the last inequality is redundant, as shown before, but it's now easier for us to compare this with the \textit{Simultaneous Decoding} inner bound of Eq.~\eqref{eq:6.3}.
+%
+\begin{equation}
+\begin{cases}
+	R_1 &< \min \qty{ I(X_1;Y_1|X_2,Q),I(X_1;Y_2|X_2,Q) }\\
+	R_2 &< \min \qty{ I(X_2;Y_1|X_1,Q), I(X_2;Y_2|X_1,Q) }\\
+	R_1+R_2 &< \min \qty{ I(X_1,X_2;Y_1|Q), I(X_1,X_2;Y_2|Q) }
+\end{cases}
+\tag{6.3}
+\label{eq:6.3}
+\end{equation}
+
+Since we need to prove that our bound from Eq.~\eqref{eq:succ_canc_bound} is included in the one from Eq.~\eqref{eq:6.3}, it suffices to show that $I(X_1;Y_2|Q) \leq I(X_1;Y_2|X_2,Q)$ and similarly $I(X_2;Y_1|Q) \leq I(X_2;Y_1|X_1,Q)$. This, though, is trivial since we consider independent transmitters (i.e. $p(x_1,x_2)=p(x_1)p(x_2)$) and we know from Chapter~2 of the book that for $X\independent Z$, it holds
+%
+\begin{equation*}
+I(X;Y|Z) \geq I(X;Y)
+\end{equation*}
+%
+which in our case $X=X_1$ and $Z=X_2$.
