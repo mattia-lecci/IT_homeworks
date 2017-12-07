@@ -1,1 +1,145 @@
 \mysection{4.12}{Problem 4.12}
+
+Since we are interested in creating lists of length $\LL_2 \leq 2^{nL_2}$, we could think of dividing the original set of messages into equal length lists and sending the index of the list instead. In other words, we could think of dividing the $|\M_2| = 2^{nR_2}$ into $|\K_2| = 2^{nR_2}/2^{nL_2} = 2^{n(R_2-L_2)}$ lists $\qty{ \LL_1, \dots,\LL_{2^{n(R_2-L_1)}} }$ of $2^{nL_2}$ messages each (assuming $R_2$ and $L_2$ integers just for simplicity). Thus, we can create a function $K: \M_2 \rightarrow \K_2$ that returns the index of the list in which a specific message is contained. Just for convenience we force $K(1)=1$. Furthermore, we will treat this list number similarly to how we treat normal messages, thus encoding it using an alphabet $\Z_2$ through the function $Z_2^n(k_2) = Z_2^n(K_2(m_2))$. At this point we can easily treat the word $Z_2^n$ like we would treat $X_1^n$ or $X_2^n$.
+
+Like a normal MAC, the transmitters send the couple $(X_1^n(M_1),Z_2^n(K_2))$ (where $K_2 = K_2(M_2)$) and the receiver decodes $(\hat{M}_1,\hat{K}_2)$.
+
+Let's fix $p(x_1,x_2) = p(x_1)p(x_2)$. Note that averaging over all the possible random codebooks we obtain and using our notation, we obtain
+%
+\begin{equation}
+\Pen = \Pr(M_1 \neq \hat{M}_1 \cup M_2 \notin \LL_{\hat{K}_2} | M_1=M_2=1 ) \triangleq \Pr(\E | M_1=M_2=1)
+\end{equation}
+
+The error event can be decomposed into
+%
+\begin{align}
+\begin{split}
+\E =& \qty{ \qty(X_1^n(1),Z_2^n(1),Y^n) \notin \typicalitySet }\\
+\cup& \{ \exists m_1\neq 1: (X_1^n(m_1),Z_2^n(1),Y^n) \in \typicalitySet \}\\
+\cup& \{ \exists m_2\neq 1: (X_1^n(1),Z_2^n(m_2),Y^n) \in \typicalitySet \}\\
+\cup& \{ \exists m_1,m_2\neq 1: (X_1^n(m_1),Z_2^n(m_2),Y^n) \in \typicalitySet \}\\
+\triangleq& \E_1 \cup \E_2 \cup \E_3 \cup \E_4
+\end{split}
+\end{align}
+
+As usual, we know from the \textit{Law of Large Numbers} that $\E_1 \xrightarrow{n \rightarrow \infty} 0$.
+
+Considering $\E_2$, it's clear that $p(x_1^n,z_2^n,y^n) = p(x_1^n)p(z_2^n)p(y^n|z_2^n)$. Thus, $X_1^n(m1) \independent (\LL_1,Y^n)$, hence
+%
+\begin{eqnarray}
+\Pr(\E_2) \rightarrow 0 & \text{if } R_1 < I(X_1;Z_2,Y) = I(X_1;Y|Z_2)
+\end{eqnarray}
+%
+where the last equality holds from the independence.
+
+Similarly we obtain
+%
+\begin{align}
+\begin{split}
+\Pr(\E_3) \rightarrow 0 \quad& \text{if } R_2-L_2 < I(Z_2;X_1,Y) = I(Z_2;Y|X_1)\\
+\Pr(\E_4) \rightarrow 0 \quad& \text{if } R_1+R_2-L_2 < I(X_1,Z_2;Y)
+\end{split}
+\end{align}
+%
+where the $R_2-L_2$ terms come from the fact that $Z_2^n$ is a function of elements of $\K_2$ which has cardinality equal to $2^{n(R_2-L_2)}$.
+
+Thus, considering all possible probability distributions as well as time sharing, we obtain that $\Pen \rightarrow 0$ if
+%
+\begin{equation}
+(R_1,R_2) \in \conv{\bigcup_{p(x_1),p(z_2)}
+\left\{
+\begin{array}{rcl}
+R_1 &<& I(X_1;Y|Z_2)\\
+R_2 &<& I(Z_2;Y|X_1) + L_2\\
+R_1+R_2 &<& I(X_1,Z_2;Y) + L_2
+\end{array}
+\right.
+}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+To demonstrate the converse we need to modify once again Fano's inequality. We define $E = \indicator[\E]$, where $\indicator$ is the indicator function. Note that $\Pr(E=1) = \Pen$. After some simple manipulation (the same as last time) we obtain that
+%
+\begin{equation}
+H(M_1,M_2|\hat{M}_1,\hat{K}_2) = \ldots \leq 1 + H(M_1,M_2|E,\hat{M}_1,\hat{K}_2)
+\end{equation}
+
+Then we can compute
+%
+\begin{align}
+\begin{split}
+H(M_1,M_2|E,\hat{M}_1,\hat{K}_2) =& \Pen H(M_1,M_2|E=1,\hat{M}_1,\hat{K}_2) + (1-\Pen) H(M_1,M_2|E=0,\hat{M}_1,\hat{K}_2)\\
+\leq& \Pen \log_2 \qty(2^{nR_1}2^{nR_2}) + (1-\Pen) \log_2 \qty(2^{nL_2})\\
+=& \Pen n(R_1+R_2-L_2) + nL_2
+\end{split}
+\end{align}
+
+Joining everything back in the original equation we obtain
+\begin{align}
+\begin{split}
+H(M_1,M_2|\hat{M}_1,\hat{K}_2) \leq& 1 + H(M_1,M_2|E,\hat{M}_1,\hat{K}_2)\\
+\leq& 1 + nL_2 + n\Pen (R_1+R_2-L_2)\\
+=& nL_2 + n \qty(\frac{1}{n} + \Pen (R_1+R_2-L_2))\\
+=& n (L_2 + \varepsilon_n)
+\end{split}
+\end{align}
+where $\varepsilon_n$ vanishes if $\Pen \rightarrow 0$.
+
+Notice that from the conditional entropy properties and the data processing inequality ($(M_1,M_2)\rightarrow Y^n \rightarrow (\hat{M}_1,\hat{K}_2)$) we have:
+%
+\begin{equation}
+H(M_2|Y^n,M_1) \leq H(M_1,M_2|Y^n) \leq H(M_1,M_2|\hat{M}_1,\hat{K}_2) \leq n(L_2 + \varepsilon_n)
+\end{equation}
+
+Thus,
+%
+\begin{align}
+\begin{split}
+nR_2 \leq& H(M_2) = H(M_2|M_1)\\
+=& I(M_2;Y^n|M_1) + H(M_2|Y^n,M_1)\\
+\leq& I(M_2;Y^n|M_1) + n(L_2 + \varepsilon_n)\\
+\leq& \ldots\\
+\leq& \sum_{i=1}^n I(X_{2i};Y_i|X_{1i}) + n(L_2 + \varepsilon_n)
+\end{split}
+\end{align}
+\begin{eqnarray}
+\begin{split}
+\implies R_2 &\leq \frac{1}{n} \sum_{i=1}^n I(X_{2i};Y_i|X_{1i}) + L_2 + \varepsilon_n\\
+&\leq I(X_2;Y|X_1,Q) + L_2 + \varepsilon_n
+\end{split}
+\end{eqnarray}
+%
+with the classical trick of the time-sharing variable.
+
+In a similar way we can obtain
+%
+\begin{equation}
+R_1 + R_2 \leq I(X_1,X_2;Y|Q) + L_2 + \varepsilon_n
+\end{equation}
+
+Lastly, we notice that also $M_1 \rightarrow Y^n \rightarrow \hat{M}_1$, yielding
+%
+\begin{equation}
+H(M_1|Y^n,M_2) \leq H(M_1|Y^n) \leq H(M_1|\hat{M}_1) \leq n\varepsilon_{1,n}
+\end{equation}
+%
+and with similar steps as before we obtain
+%
+\begin{equation}
+R_1 \leq I(X_1;Y|X_2,Q) + \varepsilon_{1,n}
+\end{equation}
+%
+where $\varepsilon_{1,n}$ depends on $\Pr(M_1 \neq \hat{M}_1|M_1=1) \triangleq P_{e1}^{(n)} \leq \Pen$
+
+For all of these we need $\Pen \rightarrow 0$ so to obtain the following region:
+%
+\begin{equation}
+\begin{cases}
+R_1 &\leq I(X_1;Y|X_2,Q)\\
+R_2 &\leq I(X_2;Y|X_1,Q) + L_2\\
+R_1+R_2 &\leq I(X_1,X_2;Y|Q) + L_2
+\end{cases}
+\end{equation}
