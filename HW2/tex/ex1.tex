@@ -53,6 +53,17 @@ Thus, using Fano's inequality and the memoryless property of the source, we obta
 \begin{equation}
 nR \geq H(X^n|Y^n) - H(X^n|M,Y^n) = nH(X|Y) - n\varepsilon_n
 \end{equation}
-\begin{equation}
+\begin{equation} \label{eq:source_cond_coding}
 \implies R \geq H(X|Y)
 \end{equation}
+
+Lastly, in the case of \textit{Distributed Lossless Source Coding} with two sources, we simply consider one of the sources ($X_1$ or $X_2$)to be the actual source $X$ in Eq.~\eqref{eq:source_cond_coding} and the other one (respectively $X_2$ and $X_1$) to be the side information $Y$. Note that if the two sources are independent this new bound doesn't help, but if they are correlated we can actually hope to improve the performance of the system. Considering what we just said, we can obtain Eq.~\eqref{eq:10.2}:
+%
+\begin{align}
+\begin{split}
+R_1 &\geq H(X_1|X_2)\\
+R_2 &\geq H(X_2|X_1)
+\end{split}
+\tag{10.2}
+\label{eq:10.2}
+\end{align}
