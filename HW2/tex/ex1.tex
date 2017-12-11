@@ -1,1 +1,69 @@
 \mysection{10.1}{Problem 10.1}
+
+We define the encoder as follows:
+%
+\begin{algorithm}
+\eIf{$y^n\notin \typicalitySet(Y)$}
+	{$ m(x^n,y^n) = 1 \, \forall x^n$}
+	{\eIf{$x^n \notin \typicalitySet(X|y^n)$}
+		{$ m(x^n,y^n) = 1$}
+		{$m(x^n,y^n) = $ unique number)}
+	}
+\end{algorithm}
+
+Note that for each $\varepsilon>0$, we can define $R = R^* + \delta(\varepsilon) = H(X|Y) + \varepsilon H(X|Y)$. Also, we recall that for any $\varepsilon>0$, $|\typicalitySet(X|y^n)| \leq 2^{n(H(X|Y) + \delta(\varepsilon))} = 2^{nR}$.
+
+Then, the decoder will return an error if $m=1$ otherwise it will return the $x^n$ associated with the unique number and the side information $y^n$.
+
+The error probability, then, can be written as
+%
+\begin{align}
+\begin{split}
+\Pr(\hat{X}^n \neq X^n) =& \Pr(\hat{X}^n \neq X^n|y^n\in \typicalitySet(Y))\Pr(y^n\in \typicalitySet(Y))\\
+&+ \Pr(\hat{X}^n \neq X^n|y^n\notin \typicalitySet(Y))\Pr(y^n\notin \typicalitySet(Y))
+\end{split}
+\end{align}
+%
+where the second term goes to zero since $\Pr(y^n\notin \typicalitySet(Y)) \rightarrow 0$, and the first term also goes to zero since $\Pr(\hat{X}^n \neq X^n|y^n\in \typicalitySet(Y)) = \Pr(\hat{x}^n \notin \typicalitySet(X|y^n) |y^n\in \typicalitySet(Y)) \rightarrow 0$.
+
+For the converse proof we use a similar technique as the one used for the \textit{Lossless Source Coding Theorem}.
+%
+\begin{align}
+\begin{split}
+nR \geq& H(M) \geq H(M|Y^n)\\
+=& I(X^n;M|Y^n) + H(M|X^n,Y^n)\\
+\geq& I(X^n;M|Y^n)\\
+=& H(X^n|Y^n) - H(X^n|M,Y^n)
+\end{split}
+\end{align}
+
+Now, we can use a modified version of Fano's inequality as follows:
+%
+\begin{align}
+\begin{split}
+H(X^n|M,Y^n) \leq& H(X^n|M)\\
+\leq& H(X^n|\hat{X}^n)\\
+\leq& 1 + n\Pen \log |\X|\\
+=& n \varepsilon_n
+\end{split}
+\end{align}
+
+Thus, using Fano's inequality and the memoryless property of the source, we obtain
+%
+\begin{equation}
+nR \geq H(X^n|Y^n) - H(X^n|M,Y^n) = nH(X|Y) - n\varepsilon_n
+\end{equation}
+\begin{equation} \label{eq:source_cond_coding}
+\implies R \geq H(X|Y)
+\end{equation}
+
+Lastly, in the case of \textit{Distributed Lossless Source Coding} with two sources, we simply consider one of the sources ($X_1$ or $X_2$)to be the actual source $X$ in Eq.~\eqref{eq:source_cond_coding} and the other one (respectively $X_2$ and $X_1$) to be the side information $Y$. Note that if the two sources are independent this new bound doesn't help, but if they are correlated we can actually hope to improve the performance of the system. Considering what we just said, we can obtain Eq.~\eqref{eq:10.2}:
+%
+\begin{align}
+\begin{split}
+R_1 &\geq H(X_1|X_2)\\
+R_2 &\geq H(X_2|X_1)
+\end{split}
+\tag{10.2}
+\label{eq:10.2}
+\end{align}

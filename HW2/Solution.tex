@@ -5,6 +5,7 @@
 \usepackage{epsfig,epsf,subfigure,graphicx,graphics}
 \usepackage{url,enumerate}
 \usepackage{physics,dsfont,ragged2e}
+\usepackage{algorithm2e}
 \usepackage{glossaries}
 \graphicspath{{fig/}}
 \usepackage{fancyhdr}
@@ -17,7 +18,17 @@
 % definitions/operators
 \DeclareMathOperator*{\argmax}{arg\,max\;}
 \DeclareMathOperator*{\argmin}{arg\,min\;}
+\newcommand{\conv}[1]{\operatorname{Conv} \qty(#1)}
 \newcommand{\x}[1]{d(X^n(#1),Y^n)}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\Z}{\mathcal{Z}}
+\newcommand{\typicalitySet}{\mathcal{T}_\varepsilon^{(n)}}
+\newcommand{\Pen}{\ensuremath{ P_e^{(n)} } }
 \newcommand{\indicator}{\mathds{1}}
 \newcommand{\eqtext}[1]{\ensuremath{\stackrel{#1}{=}}} % equal sign with some text over it
 \newcommand{\mysection}[1]{\renewcommand{\thesection}{#1}\section}
