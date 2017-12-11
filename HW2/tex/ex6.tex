@@ -1,1 +1,17 @@
 \mysection{5.20}{Problem 5.20}
+
+We consider the three-sender DC-MAC described by the exercise. We have two messages set [1:$2^{nR_1}$] and [1:$2^{nR_2}$], one encoder that assigns $x(m_1)$ to each message $m_1 \in [1:2^{nR_1}]$, an encoder that assigns $x(m_2)$ to each message $m_2 \in [1:2^{nR_2}]$ and an encoder that assign $x(m_1,m_2)$ to each pair $(m_1,m_2) \in [1:2^{nR_1}]x[1:2^{nR_2}]$. We notice that the choice of $m_1$ and $m_2$ are considered to be independent. The three encoded messages are sent trough a MAC channel. Then a decoder assigns an extimate $(\hat{m_1},\hat{m_2}) \in [1:2^{nR_1}]x[1:2^{nR_2}]$ to each received sequence. We define the average probability error as in \eqref{eq:averror}.
+
+\begin{equation}
+	P_e^{(n)}=Prob\{(\hat{m_1},\hat{m_2}) \neq (m_1,m_2)\}
+	\label{eq:averror}
+\end{equation}
+
+In order to compute the capacity region $C(R_1, R_2)$ of the system we procede as follows. We randomly and idependently generate $2^{nR_1}$ sequences $x_1^{(n)}(m_1)$ according to a chosen $p(x_1)$, $2^{nR_2}$ sequences $x_2^{(n)}(m_2)$ according to a chosen $p(x_2)$ and $2^{n(R_1+R_2)}$ sequences $x_3^{(n)}(m_1,m_2)$ according to a chosen $p(x_3|x_1,x_2)$. The described codebook is revealed to both the encoders and the decoder. In order to send the pair $(m_1,m_2)$ the first encoder trasmits $x_1^{(n)}(m_1)$, the second encoder trasmits $x_2^{(n)}(m_2)$ while the third encoder trasmits $x_3^{(n)}(m_1,m_2)$.
+
+We choose to enhance a \textit{simultaneous decoding} strategy. Therefore the decoder declares that $(\hat{m_1},\hat{m_2})$ was sent if it is the unique pair that satisfies \eqref{eq:sentcond}. In the other case it declares an error. 
+
+\begin{equation}
+	(\hat{m_1},\hat{m_2},y^n) \in
+	\label{eq:sentcond}
+\end{equation}
