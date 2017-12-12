@@ -1,1 +1,161 @@
 \mysection{5.15}{Problem 5.15}
+
+We consider two different Gaussian channels. The first channel is a Gaussian BC defined by $Y_1 = g_1 X + Z_1$  and $Y_2 = g_2 X + Z_2$ with $Z_i \sim N(0,1)$ $i \in \{1,2\}$ and average power constraint $P$ on $X$ as shown in \eqref{eq:powcon1}.
+
+\begin{equation}
+	\sum_{i=1}^n x_i(m)^2 \leq nP \quad m \in [1:2^{nR}]
+	\label{eq:powcon1}
+\end{equation}
+
+The second channel is a Gaussian MAC defined by $Y = g_1 X_1 + g_2 X_2 + Z$ with $Z \sim N(0,1)$ and average power constraint $P$ on $X_1$ and $X_2$ as shown in \eqref{eq:powcon2}.
+
+\begin{equation}
+	\sum_{i=1}^n \left( x_{1i}(m_1)^2 + x_{2i}(m_2)^2 \right) \leq nP \quad (m_1,m_2) \in [1:2^{nR_1}] \times [1:2^{nR_2}]
+	\label{eq:powcon2}
+\end{equation}
+
+\subsection{Characterize capacity regions}
+
+Our aim is characterize the two capacity regions $\C_{BC}(R_1, R_2)$ and $\C_{MAC}(R_1, R_2)$. We notice define the $C(x)$ functionas $C(x)=\frac{1}{2}log(1+x)$. We suppone $g_1 \geq g_2$ and we call $S_1=g_1^2P$ and $S_2=g_2^2P$. The capacity region $\C_{BC}(R_1, R_2)$ of the Gaussian BC is defined by \eqref{eq:capBC} for some $\alpha \in [0,1]$.
+
+\begin{equation}
+	\begin{gathered}
+		R_1 \leq C(\alpha S_1) \\
+		R_2 \leq C\left(\frac{(1-\alpha)S_2}{1+\alpha S_2}\right)
+	\end{gathered}
+	\label{eq:capBC}
+\end{equation}
+
+The capacity region $\C_{MAC}(R_1, R_2)$ of the Gaussian MAC is defined by \eqref{eq:capMAC} for some $\beta \in [0,1]$.
+
+\begin{equation}
+	\begin{gathered}
+		R_1 \leq C(\beta S_1) \\
+		R_2 \leq C((1-\beta) S_2) \\
+		R_1 + R_2 \leq C(\beta S_1 + (1-\beta)S_2)
+	\end{gathered}
+	\label{eq:capMAC}
+\end{equation}
+
+We notice that the variable $\beta \in [0,1]$ establishes the power allocation in Gaussian MAC as we can see in \eqref{eq:powcon3}.
+
+\begin{equation}
+	\begin{gathered}
+		\sum_{i=1}^n x_{1i}(m_1)^2 \leq n \beta P \quad m_1 \in [1:2^{nR_1}]\\
+		\sum_{i=1}^n x_{2i}(m_2)^2 \leq n (1- \beta ) P \quad m_2 \in [1:2^{nR_2}]
+	\end{gathered}
+	\label{eq:powcon3}
+\end{equation}
+
+\subsection{Regions equality}
+
+Our aim is prove that the two capacity regions $\C_{BC}(R_1, R_2)$ and $\C_{MAC}(R_1, R_2)$ determine the same area in the $(R_1, R_2)$ space. In order to do so we notice that both the regions $\C_{BC}(R_1, R_2)$ and $\C_{MAC}(R_1, R_2)$ are convex. This means that to prove that one region is a subset of the other one we only need to prove that the corners point of the first region are contained in the second.
+
+The only corner point of $\C_{BC}$ $\forall \alpha $ is given by \eqref{eq:cornerBC}.
+
+\begin{equation}
+	P_{BC} = \left( C(\alpha S_1) , C \left( \frac{(1-\alpha)S_2}{1+\alpha S_2} \right) \right)
+	\label{eq:cornerBC}
+\end{equation}
+
+The two corner points of $\C_{MAC}$ are given by \eqref{eq:cornerMAC}.
+
+\begin{equation}
+	\begin{gathered}
+		P_{MAC}^1 = (\left( C (\beta S_1 + (1-\beta)S_2) - C((1-\beta)S_2) , C \left( (1-\beta)S_2 \right) \right)) \\ P_{MAC}^2 = (\left(C \left(\beta S_1 \right), C (\beta S_1 + (1-\beta)S_2) - C(\beta S_1) \right))
+	\end{gathered}
+	\label{eq:cornerMAC}
+\end{equation}
+
+Now we want to show that $\C_{BC} \subseteq \C_{MAC}$. We put $\beta = \alpha(1+S_2)/(1+\alpha S_2)$ and we obtain what follows.
+
+\begin{gather*}
+	\beta = \frac{\alpha(1+S_2)}{1+\alpha S_2} \quad  \alpha = \frac{\beta}{1+ (1-\beta) S_2} \Rightarrow \\
+	\left( C(\alpha S_1) , C \left( \frac{(1-\alpha)S_2}{1+\alpha S_2} \right) \right) = \left( C (\beta S_1 + (1-\beta)S_2) - C((1-\beta)S_2) , C \left( (1-\beta)S_2 \right) \right)
+\end{gather*}
+
+We have found a value of $\beta$ for which $P_{BC} = P_{MAC}^1$. The only corner point of $\C_{BC}$ is contained in $\C_{MAC}$ and therefore $\C_{BC} \subseteq \C_{MAC}$.
+
+Now we want to show that $\C_{MAC} \subseteq \C_{BC}$. First we put $\alpha = \beta / (1+(1-\beta)S_2)$ and we obtain what follows.
+
+\begin{gather*}
+	\alpha = \frac{\beta}{1+ (1-\beta) S_2} \quad \beta = \frac{\alpha(1+S_2)}{1+\alpha S_2}  \Rightarrow \\
+	\left( C (\beta S_1 + (1-\beta)S_2) - C((1-\beta)S_2) , C \left( (1-\beta)S_2 \right) \right)
+	= \left( C(\alpha S_1) , C \left( \frac{(1-\alpha)S_2}{1+\alpha S_2} \right) \right)
+\end{gather*}
+
+We have found a value of $\alpha$ for which $P_{MAC}^1 = P_{BC}$. Then we put $\alpha = \beta$ and we obtain what follows.
+
+\begin{gather*}
+	\alpha = \beta \Rightarrow \\
+	(\left( , C \left(\beta S_1 \right), C (\beta S_1 + (1-\beta)S_2) - C(\beta S_1) \right)) =  \left( C \left(\alpha S_1 \right), C \left( \frac{(1-\alpha)S_2}{1 + \alpha S_1}\right) \right)
+\end{gather*}
+
+Now we remember that $G_1 \geq g_2$. This implies that $S_1 \geq \S_2$ and therefore what follows.
+
+\begin{equation}
+	\frac{(1-\alpha)S_2}{1 + \alpha S_1} \leq \frac{(1-\alpha)S_2}{1 + \alpha S_2}
+\end{equation}
+
+This means that $P_{MAC}^2$ has one coordinate identical to $P_{BC}$ and the other cordinate equal or lower. We have found a value of $\alpha$ for which $P_{MAC}^1 \in \C_{BC}$. Both the corners point of $\C_{MAC}$ are contained in $\C_{BC}$ and therefore $\C_{MAC} \subseteq \C_{BC}$. Since we prove that $\C_{BC} \subseteq \C_{MAC}$ and that $\C_{MAC} \subseteq \C_{BC}$, we also prove that $\C_{BC}=\C_{MAC}$.
+
+\subsection{Boundary MAC achievability}
+
+Our aim is demostrate that every point $(R_1,R_2)$ on the boundary of $\C_{MAC}$ is achievable using random coding and succesive cancellation deconding. First we rember that the two capacity regions coincide $\C_{BC}=\C_{MAC}$. Therefore every boundary point of $\C_{MAC}$ coincide with a boundary point of $\C_{BC}$. The boundary points of $\C_{BC}$ can be always defined as seen in \eqref{eq:cornerBC} for some $\alpha \in [0,1]$. We remember that $P_{BC} = P_{MAC}^1$ for $\beta = \alpha(1+S_2)/(1+\alpha S_2)$. We conclude that every boundary point of $\C_{MAC}$ can be written as shown in \eqref{eq:boundmac} for some $\beta \in [0,1]$.
+
+\begin{equation}
+	(\left( C (\beta S_1 + (1-\beta)S_2) - C((1-\beta)S_2) , C \left( (1-\beta)S_2 \right) \right))
+	\label{eq:boundmac}
+\end{equation}
+
+Therefore to prove that all the boundary points of $\C_{MAC}$ are achievable, we only need to prove that the corner point $P_{MAC}^1$ is achievable using $\beta P$ and $(1-\beta) P$ as constraints of the two trasmitter. We have already state during the course that the corners point of the capacity region of a MAC channel are achievable using random coding and succesive cancellation deconding and without use time sharing. Therefore the proof is given.
+
+\subsection{Boundary BC achievability}
+
+Our aim is demostrate that the boundary points of $\C_{BC}$ is achievable using the same sequence of codes that achieves the boundary points of $\C_{MAC}$. Suppose to have sequence of code $(2^{nR_1}, 2^{nR_2}, n)$ that achieves the boundary points of $\C_{MAC}$. We assume that the power allocation is enhanced so that $x_1^n$ obtains $n \beta P$ while $x_2^n$ obtains $n (1-\beta) P$. We also assume that the chosen codes are uncorrelated for large $n$ as we can see in \eqref{eq:uncor}.
+
+\begin{equation}
+	\frac{1}{n}\sum_{i=1}^n x_{1i}(m_1) x_{2i} (m_2)= 0 \quad \forall (m_1,m_2) \in [1:2^{nR_1}]\times[1:2^{nR_2}]
+	\label{eq:uncor}
+\end{equation}
+
+Now we want to build a code sequence $(2^{n(R_1+R_2)},n)$ for the Gaussian BC starting from the given codes sequence for the Gaussian MAC. We define a new BC codebook in \eqref{eq:codebook}.
+
+\begin{equation}
+	x_i(m_1,m_2)= \sqrt{\frac{\alpha}{\beta}}x_{1i}(m_1)+\sqrt{\frac{1-\alpha}{1-\beta}}x_{2i}(m_2) \quad \forall i \in [1:n]
+	\label{eq:codebook}
+\end{equation}
+
+We notice that the BC codebook requires the same amount of power of the MAC codebook, as we can seen in \eqref{eq:powerallBC}.
+
+\begin{equation}
+	\begin{aligned}
+		\sum_{i=1}^n x_i^2(m_1,m_2) = & \sum_{i=1}^n \frac{\alpha}{\beta} x_{1i}^2(m_1) + \sum_{i=1}^n \frac{1-\alpha}{1-\beta} x_{2i}^2(m_2) + \sum_{i=1}^n \sqrt{\frac{\alpha(1-\alpha)}{\beta(1-\beta)}} x_{1i}(m_1) x_{2i}(m_2)\\
+		= & \alpha nP + (1-\alpha) nP = nP
+	\end{aligned}
+	\label{eq:powerallBC}
+\end{equation}
+
+In \eqref{eq:powerallBC} we have used the fact that $x_1^n$ and $x_2^n$ are uncorrelated for large values of $n$. Obviously the BC system in order to send the message $(m_1,m_2)$ will send the encoded message $x^n(m_1,m_2)$.
+
+From the theory of Gaussian Broadcast channel, we know that boundary achievability conditions are given by \eqref{eq:bcachiev}.
+
+\begin{equation}
+\begin{gathered}
+	R_1 \leq C(\alpha S_1) \\
+	R_2  \leq C \left( \frac{(1-\alpha )S_1} {1+\alpha S_1} \right)
+\end{gathered}
+\label{eq:bcachiev}
+\end{equation}
+
+We chose to use $\alpha = \frac{\beta}{1+ (1-\beta) S_2}$, obtaining \eqref{eq:macachiev}.
+
+\begin{equation}
+\begin{gathered}
+	R_1 \leq C (\beta S_1 + (1-\beta)S_2) - C((1-\beta)S_2) \\
+	R_2  \leq   C \left( (1-\beta)S_2 \right)
+\end{gathered}
+\label{eq:macachiev}
+\end{equation}
+
+As previously proved \eqref{eq:macachiev} represents the achievability conditions for boundary points of Gaussian MAC. Therefore the proof is given.

@@ -1,6 +1,6 @@
 \mysection{5.20}{Problem 5.20}
 
-We consider the three-sender DC-MAC described by the exercise. We have two messages set [1:$2^{nR_1}$] and [1:$2^{nR_2}$], one encoder that assigns $x(m_1)$ to each message $m_1 \in [1:2^{nR_1}]$, an encoder that assigns $x(m_2)$ to each message $m_2 \in [1:2^{nR_2}]$ and an encoder that assign $x(m_1,m_2)$ to each pair $(m_1,m_2) \in [1:2^{nR_1}]x[1:2^{nR_2}]$. We notice that the choice of $m_1$ and $m_2$ are considered to be independent. The three encoded messages are sent trough a MAC channel. Then a decoder assigns an extimate $(\hat{m_1},\hat{m_2}) \in [1:2^{nR_1}]x[1:2^{nR_2}]$ to each received sequence. We define the average probability error as in \eqref{eq:averror}.
+We consider the three-sender DC-MAC described by the exercise. We have two messages set [1:$2^{nR_1}$] and [1:$2^{nR_2}$], one encoder that assigns $x(m_1)$ to each message $m_1 \in [1:2^{nR_1}]$, an encoder that assigns $x(m_2)$ to each message $m_2 \in [1:2^{nR_2}]$ and an encoder that assign $x(m_1,m_2)$ to each pair $(m_1,m_2) \in [1:2^{nR_1}]x[1:2^{nR_2}]$. We notice that the choice of $m_1$ and $m_2$ are considered to be independent. The three encoded messages are sent trough a MAC channel. Then a decoder assigns an extimate $(\hat{m_1},\hat{m_2}) \in [1:2^{nR_1}] \times [1:2^{nR_2}]$ to each received sequence. We define the average probability error as in \eqref{eq:averror}.
 
 \begin{equation}
 	P(\xi)=Prob\{(\hat{m_1},\hat{m_2}) \neq (m_1,m_2)\}
@@ -34,7 +34,7 @@ We choose to enhance a \textit{simultaneous decoding} strategy. Therefore the de
 First we bound the error event averaged over all the possible random codebooks and messages, obtaining \eqref{eq:boundep}.
 
 \begin{equation}
-	P(\xi)=P(\xi | m_1=1,m_2=1)
+	P(\xi)=P(\xi | M_1=1,M_2=1)
 	\label{eq:boundep}
 \end{equation}
 
