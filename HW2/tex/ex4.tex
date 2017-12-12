@@ -16,7 +16,7 @@ The second channel is a Gaussian MAC defined by $Y = g_1 X_1 + g_2 X_2 + Z$ with
 
 \subsection{Characterize capacity regions}
 
-Our aim is characterize the two capacity regions $\C_{BC}(R_1, R_2)$ and $\C_{MAC}(R_1, R_2)$. We notice define the $C(x)$ functionas $C(x)=\frac{1}{2}log(1+x)$. We suppone $g_1 \geq g_2$ and we call $S_1=g_1^2P$ and $S_2=g_2^2P$. The capacity region $\C_{BC}(R_1, R_2)$ of the Gaussian BC is defined by \eqref{eq:capBC} for some $\alpha \in [0,1]$.
+Our aim is characterize the two capacity regions $\C_{BC}(R_1, R_2)$ and $\C_{MAC}(R_1, R_2)$ of the two channels. We define the $C(x)$ function as $C(x)=\frac{1}{2}log(1+x)$. We suppone $g_1 \geq g_2$ and we call $S_1=g_1^2P$ and $S_2=g_2^2P$. The capacity region $\C_{BC}(R_1, R_2)$ of the Gaussian BC is defined by \eqref{eq:capBC} for some $\alpha \in [0,1]$.
 
 \begin{equation}
 	\begin{gathered}
@@ -49,16 +49,16 @@ We notice that the variable $\beta \in [0,1]$ establishes the power allocation i
 
 \subsection{Regions equality}
 
-Our aim is prove that the two capacity regions $\C_{BC}(R_1, R_2)$ and $\C_{MAC}(R_1, R_2)$ determine the same area in the $(R_1, R_2)$ space. In order to do so we notice that both the regions $\C_{BC}(R_1, R_2)$ and $\C_{MAC}(R_1, R_2)$ are convex. This means that to prove that one region is a subset of the other one we only need to prove that the corners point of the first region are contained in the second.
+Our aim is prove that the two capacity regions $\C_{BC}(R_1, R_2)$ and $\C_{MAC}(R_1, R_2)$ determine the same area in the $(R_1, R_2)$ space. In order to do so we notice that both the regions $\C_{BC}(R_1, R_2)$ and $\C_{MAC}(R_1, R_2)$ are convex. This means that to prove that one region is a subset of the other one we only need to prove that the corners point of the first region are contained in the second region.
 
-The only corner point of $\C_{BC}$ $\forall \alpha $ is given by \eqref{eq:cornerBC}.
+Given $\alpha \in [0,1]$ the only corner point of $\C_{BC}$ is given by \eqref{eq:cornerBC}.
 
 \begin{equation}
 	P_{BC} = \left( C(\alpha S_1) , C \left( \frac{(1-\alpha)S_2}{1+\alpha S_2} \right) \right)
 	\label{eq:cornerBC}
 \end{equation}
 
-The two corner points of $\C_{MAC}$ are given by \eqref{eq:cornerMAC}.
+Given $\beta \in [0,1]$ the two corner points of $\C_{MAC}$ are given by \eqref{eq:cornerMAC}.
 
 \begin{equation}
 	\begin{gathered}
@@ -91,17 +91,17 @@ We have found a value of $\alpha$ for which $P_{MAC}^1 = P_{BC}$. Then we put $\
 	(\left( , C \left(\beta S_1 \right), C (\beta S_1 + (1-\beta)S_2) - C(\beta S_1) \right)) =  \left( C \left(\alpha S_1 \right), C \left( \frac{(1-\alpha)S_2}{1 + \alpha S_1}\right) \right)
 \end{gather*}
 
-Now we remember that $G_1 \geq g_2$. This implies that $S_1 \geq \S_2$ and therefore what follows.
+We remember that $G_1 \geq g_2$. This implies that $S_1 \geq \S_2$ and therefore we obtain what follows.
 
-\begin{equation}
+\begin{equation*}
 	\frac{(1-\alpha)S_2}{1 + \alpha S_1} \leq \frac{(1-\alpha)S_2}{1 + \alpha S_2}
-\end{equation}
+\end{equation*}
 
-This means that $P_{MAC}^2$ has one coordinate identical to $P_{BC}$ and the other cordinate equal or lower. We have found a value of $\alpha$ for which $P_{MAC}^1 \in \C_{BC}$. Both the corners point of $\C_{MAC}$ are contained in $\C_{BC}$ and therefore $\C_{MAC} \subseteq \C_{BC}$. Since we prove that $\C_{BC} \subseteq \C_{MAC}$ and that $\C_{MAC} \subseteq \C_{BC}$, we also prove that $\C_{BC}=\C_{MAC}$.
+We proved that $P_{MAC}^2$ has one coordinate identical to $P_{BC}$ and the other cordinate equal or lower. We have found a value of $\alpha$ for which $P_{MAC}^1 \in \C_{BC}$. Both the corners point of $\C_{MAC}$ are contained in $\C_{BC}$ and therefore $\C_{MAC} \subseteq \C_{BC}$. Since we proved that $\C_{BC} \subseteq \C_{MAC}$ and that $\C_{MAC} \subseteq \C_{BC}$, the proof of $\C_{BC}=\C_{MAC}$ is given.
 
 \subsection{Boundary MAC achievability}
 
-Our aim is demostrate that every point $(R_1,R_2)$ on the boundary of $\C_{MAC}$ is achievable using random coding and succesive cancellation deconding. First we rember that the two capacity regions coincide $\C_{BC}=\C_{MAC}$. Therefore every boundary point of $\C_{MAC}$ coincide with a boundary point of $\C_{BC}$. The boundary points of $\C_{BC}$ can be always defined as seen in \eqref{eq:cornerBC} for some $\alpha \in [0,1]$. We remember that $P_{BC} = P_{MAC}^1$ for $\beta = \alpha(1+S_2)/(1+\alpha S_2)$. We conclude that every boundary point of $\C_{MAC}$ can be written as shown in \eqref{eq:boundmac} for some $\beta \in [0,1]$.
+Our aim is demostrate that every point $(R_1,R_2)$ on the boundary of $\C_{MAC}$ is achievable using random coding and succesive cancellation deconding. First we rember that the two capacity regions coincide $\C_{BC}=\C_{MAC}$. Therefore every boundary point of $\C_{MAC}$ coincide with a boundary point of $\C_{BC}$. The boundary points of $\C_{BC}$ can be always defined as seen in \eqref{eq:cornerBC} with $\alpha \in [0,1]$. We remember that $P_{BC} = P_{MAC}^1$ for $\beta = \alpha(1+S_2)/(1+\alpha S_2)$. We conclude that every boundary point of $\C_{MAC}$ can be written as shown in \eqref{eq:boundmac} for $\beta \in [0,1]$.
 
 \begin{equation}
 	(\left( C (\beta S_1 + (1-\beta)S_2) - C((1-\beta)S_2) , C \left( (1-\beta)S_2 \right) \right))
@@ -136,7 +136,7 @@ We notice that the BC codebook requires the same amount of power of the MAC code
 	\label{eq:powerallBC}
 \end{equation}
 
-In \eqref{eq:powerallBC} we have used the fact that $x_1^n$ and $x_2^n$ are uncorrelated for large values of $n$. Obviously the BC system in order to send the message $(m_1,m_2)$ will send the encoded message $x^n(m_1,m_2)$.
+In \eqref{eq:powerallBC} we have used the fact that $x_1^n$ and $x_2^n$ are uncorrelated for large values of $n$. Obviously the working of the BC system, is base on sending $x^n(m_1,m_2)$  as ecnoded message of $(m_1,m_2)$.
 
 From the theory of Gaussian Broadcast channel, we know that boundary achievability conditions are given by \eqref{eq:bcachiev}.
 
