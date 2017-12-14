@@ -55,7 +55,6 @@ We can now repeat the exact same procedure to obtain all the messages up to $U_i
 \end{equation}
 \end{itemize}
 The set of conditions obtained during the decoding is summarized in table \ref{tab:conditions}.
-\newline
 \begin{table}[h!]
   \centering
   \begin{tabular}{c|c|c|c|c}
@@ -72,7 +71,7 @@ The set of conditions obtained during the decoding is summarized in table \ref{t
   \caption{Conditions on the rate of each channel, at each receiver.}
   \label{tab:conditions}
 \end{table}
-As noticed before, the condition can be simplified as in table \ref{tab:conditions_fin} considering that $N_k\geq N_{k-1}\geq ... \geq N_1$: the rate for channel $i$ is :
+As noticed before, the conditions can be simplified as in table \ref{tab:conditions_fin} considering that $N_k\geq N_{k-1}\geq ... \geq N_1$: the rate for channel $i$ is :
 \begin{equation}
   R_i < C\left(\frac{\alpha_i P}{\sum_{h<i}\alpha_h P +N_i}\right)
 \end{equation}
@@ -87,3 +86,205 @@ As noticed before, the condition can be simplified as in table \ref{tab:conditio
   \label{tab:conditions_fin}
 \end{table}
 \subsection{Converse}
+To prove the converse, we need to prove that for every code with rates $R_1, R_2, .., R_k$ there exists a sequence $\alpha_1, \alpha_2, ... , \alpha_k$, $\sum_{h=1}^k\alpha_k = 1$, such that
+\begin{align}
+  \centering
+  \begin{split}
+    & R_k<C\left(\frac{\alpha_k P}{\left(1-\alpha_k\right)P + N_k}\right),\\
+    & R_i<C\left(\frac{\alpha_i P}{\sum_{h<i}\alpha_h P +N_i}\right),\text{ for } i = 2,..,k-1.\\
+    & R_{1}<C\left(\frac{\alpha_{1} P}{N_{1}}\right),\\
+  \end{split}
+\end{align}
+
+We will start from receiver $k$. Using Fano's inequality the converse condition can be written as
+\begin{equation}
+  nR_k\leq I(M_k;Y^n_k)
+\end{equation}
+Therefore to prove the converse we can just prove that
+\begin{align}
+  \begin{split}
+    I(M_k;Y^n_k)\leq nC\left(\frac{\alpha_k P}{\left(1-\alpha_k\right)P + N_k}\right) = \frac{n}{2}\log\left(1+\frac{\alpha_k P}{\left(1-\alpha_k\right)P + N_k}\right)=\\
+    =\frac{n}{2}\log\left(\frac{P+N_k}{\left(1-\alpha_k\right)P + N_k}\right)
+  \end{split}
+\end{align}
+Let us consider the first term of the previous equation. Applying the properties of the mutual information, we get that
+\begin{align}
+  \begin{split}
+    I(M_k;Y_k^n) = h(Y_k^n) - h(Y_k^n|M_k)
+    \leq \frac{n}{2}\log(2\pi e (P+N_k))- h(Y_k^n|M_k)
+    \label{eq:I_M_K}
+  \end{split}
+\end{align}
+Consider the last term of equation \ref{eq:I_M_K}:
+\begin{align}
+  \begin{cases}
+  h(Y_k^n|M_k)\geq h(Y_k^n|X^n,M_k) = h(Z^n_k) = \frac{n}{2}\log\left(2\pi e N_k\right) \\
+  h(Y_k^n|M_k)\leq h(Y_k^n)\leq \frac{n}{2} \log(2\pi e (P+N_k))\\
+  \end{cases}
+  \\
+  \implies \frac{n}{2}\log\left(2\pi e N_k\right)\leq h(Y_k^n|M_k) \leq \frac{n}{2} \log(2\pi e (P+N_k))
+\end{align}
+Therefore, there must exist a $\alpha_k \in [0,1]$ such that
+\begin{equation}
+  h(Y_k^n|M_k) = \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_k))
+  \label{eq:Y_kM_k}
+\end{equation}
+Substituing \ref{eq:Y_kM_k} in \ref{eq:I_M_K}, we obtain
+\begin{align}
+  \begin{split}
+    I(M_k;Y_k^n) \leq \frac{n}{2}\log(2\pi e (P+N_k))- h(Y_k^n|M_k) =\\ =\frac{n}{2}\log(2\pi e (P+N_k))-\frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_k))\\
+    = \frac{n}{2}\log(\frac{P+N_k}{(1-\alpha_k)P+N_k})
+  \end{split}
+  \label{eq:I_M_K}
+\end{align}
+and this demonstrates the converse for rate $R_k$.\\
+
+A similar procedure can be applied to receiver $k-1$. The converse can be proved if we demonstrate that
+\begin{align}
+  \begin{split}
+    nR_{k-1}\leq I(M_{k-1};Y_{k-1})\leq nC\left(\frac{\alpha_{k-1} P}{\left(1-\alpha_k-\alpha_{k-1}\right)P + N_{k-1}}\right) = \\
+    = \frac{n}{2}\log\left(1+\frac{\alpha_{k-1} P}{\left(1-\alpha_k-\alpha_{k-1}\right)P + N_{k-1}}\right)\\
+    = \frac{n}{2}\log\left(\frac{(1-\alpha_{k})P+N_{k-1} }{\left(1-\alpha_k-\alpha_{k-1}\right)P + N_{k-1}}\right)\\
+    = \frac{n}{2}\log\left((1-\alpha_{k})P+N_{k-1}\right)-\frac{n}{2}\log\left(\left(1-\alpha_k-\alpha_{k-1}\right)P + N_{k-1}\right)
+  \end{split}
+\end{align}
+First, we notice that for the properties of the mutual information and the independency of $M_k$, $M_{k-1}$:
+\begin{equation}
+  I(M_{k-1};Y^n_{k-1})\leq I(M_{k-1};Y^n_{k-1}|M_k)
+\end{equation}
+so for the converse we can just prove that
+\begin{equation}
+  I(M_{k-1};Y^n_{k-1}|M_k)\leq \frac{n}{2}\log\left((1-\alpha_{k})P+N_{k-1}\right)-\frac{n}{2}\log\left(\left(1-\alpha_k-\alpha_{k-1}\right)P + N_{k-1}\right)
+  \label{eq:I_M-1_K-1}
+\end{equation}
+Again, as in \ref{eq:I_M_K}, we can express
+\begin{equation}
+  I(M_{k-1};Y^n_{k-1}|M_k) = h(Y_{k-1}^n|M_{k}) - h(Y_{k-1}^n|M_k,M_{k-1}).
+  \label{eq:I_M_K-1_I_K-1|Mk}
+\end{equation}
+\begin{itemize}
+  \item $\mathbf{h(Y_{k-1}^n|M_{k})}$. First, consider $h(Y_k^n|M_k)$. Recalling the definition of the degraded Gaussian BC, we know that
+  \begin{equation}
+      Y^n_k = Y^n_{k-1}+\tilde{Z}^n_k
+  \end{equation}
+  and applying the Entropy Power Inequality (EPI):
+  \begin{align}
+    \begin{split}
+      2^{2h(Y^n_k|M_k)/n}\geq 2^{2h(Y^n_{k-1}|M_k)/n}+2^{2h(\tilde{Z}^n_{k}|M_k)/n}
+    \end{split}
+    \label{eq:EPI}
+  \end{align}
+  Since $\tilde{Z}^n_k$ and $M_k$ are independent, and $\tilde{Z}^n_k$ is distributed as $\mathcal{N}(0,\tilde{N}_k)$
+  \begin{align}
+    \begin{split}
+      h(\tilde{Z}^n_{k}|M_k) = h(\tilde{Z}^n_{k}) = \frac{n}{2}\log\left(2\pi e \tilde{N}_k\right).
+    \end{split}
+  \end{align}
+  Using this result in the \ref{eq:EPI}, and taking the logarithm in both sides,
+  \begin{align}
+    \begin{split}
+      2h(Y^n_k|M_k)/n\geq \log\left(2^{2h(Y^n_{k-1}|M_k)/n}+2^{\log\left(2\pi e \tilde{N}_k\right)}\right) \\
+      = \log\left(2^{2h(Y^n_{k-1}|M_k)/n}+2\pi e \tilde{N}_k\right)\\
+      \implies h(Y^n_k|M_k)\geq \frac{n}{2}\log\left(2^{2h(Y^n_{k-1}|M_k)/n}+2\pi e \tilde{N}_k\right)
+    \end{split}
+  \end{align}
+  Now, we go back to decoder $k$ and use again the result in \ref{eq:Y_kM_k}, from the above equation we obtain that
+  \begin{equation}
+    h(Y_k^n|M_k) = \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_k))\geq \frac{n}{2}\log\left(2^{2h(Y^n_{k-1}|M_k)/n}+2\pi e \tilde{N}_k\right)
+  \end{equation}
+  Since the logarithm is monotonically increasing, we can move the relation to the arguments:
+  \begin{align}
+    \begin{split}
+      2\pi e ((1-\alpha_k) P+N_k))\geq (2^{2h(Y^n_{k-1}|M_k)/n}+2\pi e \tilde{N}_k\\
+      \implies
+      2\pi e ((1-\alpha_k) P+N_k-\tilde{N}_k)\geq 2^{2h(Y^n_{k-1}|M_k)/n}\\
+      \implies
+      \log(2\pi e ((1-\alpha_k) P+N_k-\tilde{N}_k))\geq 2h(Y^n_{k-1}|M_k)/n\\
+      \implies
+      \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_k-\tilde{N}_k))\geq h(Y^n_{k-1}|M_k)
+    \end{split}
+    \label{eq:Yk-1_Mk}
+  \end{align}
+  For the structure of the degraded Gaussian BC, $N_k-\tilde{N}_k=N_{k-1}$ and \ref{eq:Yk-1_Mk} becomes
+  \begin{align}
+    \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1}))\geq h(Y^n_{k-1}|M_k)
+    \label{eq:Yk-1|Mk}
+  \end{align}
+  that is the first term in \ref{eq:I_M-1_K-1}, so:
+  \begin{align}
+    \begin{split}
+        I(M_{k-1};Y^n_{k-1}|M_k) = h(Y_{k-1}^n|M_{k}) - h(Y_{k-1}^n|M_k,M_{k-1})\leq\\
+        \leq \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1})) - h(Y_{k-1}^n|M_k,M_{k-1})
+    \end{split}
+    \label{eq:final_1}
+  \end{align}
+  \item $\mathbf{h(Y_{k-1}^n|M_k,M_{k-1})}$. Consider now the second term in \ref{eq:I_M_K-1_I_K-1|Mk}. We can apply the same reasoning as in \ref{eq:Y_kM_k} and set the sequence of disequations:
+  \begin{align}
+    \begin{cases}
+      h(Y_{k-1}|M_{k-1},M_{k})\geq h(Y_{k-1}|M_{k-1},M_{k},X) =h(Z_{k-1}) = \frac{n}{2}\log(2\pi e N_{k-1}) \\
+      h(Y_{k-1}|M_{k-1},M_{k})\leq h(Y_{k-1}|M_{k})\overset{(\ref{eq:Yk-1|Mk})}{\leq} \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1}))
+    \end{cases}
+  \end{align}
+  from which
+  \begin{equation}
+    \frac{n}{2}\log(2\pi e N_{k-1})\leq h(Y_{k-1}|M_{k-1},M_{k})\leq \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1}))
+  \end{equation}
+  and therefore there must exist $\alpha_{k-1}$ such that
+  \begin{equation}
+    h(Y_{k-1}|M_{k-1},M_{k}) = \frac{n}{2}\log(2\pi e ((1-\alpha_k-\alpha_{k-1}) P+N_{k-1})).
+    \label{eq:final_2}
+  \end{equation}
+  The parameter $\alpha_{k-1}$ is positive and must vary in such a way so that
+  \begin{equation*}
+    0\leq(1-\alpha_k-\alpha_{k-1})\leq 1
+    \implies 0\leq\alpha_{k-1}\leq 1-\alpha_k
+  \end{equation*}
+\end{itemize}
+Combining the previous points:
+\begin{align}
+  \begin{split}
+    I(M_{k-1};Y^n_{k-1}|M_k) = h(Y_{k-1}^n|M_{k}) - h(Y_{k-1}^n|M_k,M_{k-1})\leq\\
+    \overset{(\ref{eq:final_1})}{\leq} \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1})) - h(Y_{k-1}^n|M_k,M_{k-1}) =\\
+    \overset{(\ref{eq:final_2})}{=}\frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1}))-\frac{n}{2}\log(2\pi e ((1-\alpha_k-\alpha_{k-1}) P+N_{k-1}))=\\
+    = \frac{n}{2}\log\left(\frac{((1-\alpha_k) P+N_{k-1}}{(1-\alpha_k-\alpha_{k-1}) P+N_{k-1}}\right)
+  \end{split}
+  \label{eq:final_k-1}
+\end{align}
+Now the procedure can be iterated for every $1\leq i\leq k-1$ in the same way. At every step $i$, the condition on $\alpha_i$ is
+\begin{equation}
+  0\leq \alpha_i \leq 1-\sum_{h>i}\alpha_h
+\end{equation}
+up to the first receiver, where $\alpha_1 = 1-\sum_{h\neq 1}\alpha_h$ so that the power constrain is also satisfied:
+\begin{equation}
+\sum_{h = 1}^k \alpha_h = 1.
+\end{equation}
+
+% and considering the fact that $M_i$ is independent of any other $M_h$ with $h\leq i$, for the properties of the mutual information
+% \begin{equation}
+%   nR_i\leq I(M_i;Y^n_i)\leq I(M_i;Y^n_i|M_h).
+% \end{equation}
+% Therefore to prove the converse we can just prove that
+% \begin{equation}
+%   I(M_i;Y^n_i|M_h)\leq nC\left(\frac{\alpha_i P}{\sum_{h<i}\alpha_h P +N_i}\right).
+% \end{equation}
+% Consider $I(M_i;Y_i^n|M_{h<i})$ where $M_{h<i} = M_1,...,M_{i-1}$. Applying the properties of the mutual information, we get that
+% \begin{align}
+%   \begin{split}
+%     I(M_i;Y_i^n|M_{h<i}) = h(Y_i^n|M_{h<i}) - h(Y_i^n|M_i,M_{h<i}) = h(Y_i^n|M_{h<i}) - h(Y_i^n|M_{h\leq i})\\
+%     \leq \frac{n}{2}\log(2\pi e (P+N_i))- h(Y_i^n|M_{h\leq i})
+%     \label{eq:I_M_Y}
+%   \end{split}
+% \end{align}
+% Let us analyse the first term:
+% \begin{align*}
+%   \frac{n}{2}\log(2\pi e N_i) = h(Y^n_i|M_h) \leq h(Y^n_i|M_{h\leq i})\leq \frac{n}{2}\log(2\pi e (P+N_i)).
+% \end{align*}
+% Then, there exists $\alpha_i \in [0,1]$ such that
+% \begin{equation}
+%   h(Y_i^n|M_{h\leq i}) = \frac{n}{2} \log(2\pi e (\alpha_i P+N_i)).
+%   \label{eq:h_Y}
+% \end{equation}
+% Applying \ref{eq:h_Y} to \ref{eq:I_M_Y}, we obtain
+% \begin{equation}
+%   I(M;Y_i^n|M_{h<i})\leq \frac{n}{2}\log\left(\frac{P+N_i}{\alpha_i P + N_i}\right)
+% \end{equation}
