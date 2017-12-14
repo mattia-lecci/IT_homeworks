@@ -1,4 +1,3 @@
-% !TEX root = C:\Users\Famiglia\Documents\GitHub\IT_homeworks\HW2\Solution.tex
 \mysection{5.16}{Problem 5.16}
 \renewcommand{\arraystretch}{2}
 The k-receiver Gaussian Broadcast Channel is composed of k Gaussian BC's, one for each receiver. The output of the channel for the transmitted message $X$ at receiver 1 is $Y_1 = X+Z_1$ and at the $i-th$ receiver is $Y_i = X+Z_i$. As in the two-receiver settings, we can move to the degraded channel representation, defining $\tilde{Y}_i = \tilde{Y}_{i-1}+\tilde{Z}_i$ where $Z_1,\tilde{Z}_2,...,\tilde{Z}_k$ are Gaussian noise components with powers $N_1,\tilde{N}_2,....,\tilde{N}_k$ respectively, each of which can be expressed as $\tilde{N}_i = N_i-N_{i-1}$. We will assume that the notation is the same as the one used in chapter 5, i.e., the considered BC is degraded and receiver 1 is the strongest. \\
@@ -6,12 +5,12 @@ Let $m_i$ be the message destined to the $i$-th receiver, $i=1,2,...,k$.
 \subsection{Achievability}
 Achievability can be proved using superposition coding.
 \subsubsection*{Codebook generation.}
- For each receiver $i$ fix a pmf $p(u_i)p(x|u_i)$. For each $i$, randomly and independently generate $2^{nR_i}$ sequences $u^n_i(m_i)$, $m_i\in [1:2^{nR_i}]$, $U_i\sim \mathcal{N}(0, \alpha_i P)$, with $\alpha_1 = 1-\sum_{h=2}^k \alpha_h$.
-According to the superposition coding, to transmit $m_1,m_2,...,m_k$ the transmitter sends
+ For each receiver $i$, fix a pdf $p(u_i)p(x|u_i)$. For each $i$, randomly and independently generate $2^{nR_i}$ sequences $u^n_i(m_i)$, $m_i\in [1:2^{nR_i}]$, $U_i\sim \mathcal{N}(0, \alpha_i P)$, with $\alpha_1 = 1-\sum_{h=2}^k \alpha_h$.
+According to the superposition coding, to transmit $m_1,m_2,...,m_k$, the transmitter sends
 \begin{equation}
 X = U_1+ U_2+...+U_k = \sum_{i=1}^k U_i
 \end{equation}
-We will use the word "message" to denote both the message $m$ and its encoded version $u$ since they play the same role in this dimostration.
+We will use the word "message" to denote both the message $m$ and its encoded version $u^n$ since they play the same role in this proof.
 \subsubsection*{Encoding}
 To send $(m_1,m_2,....,m_k)$ transmit $x^n(m_1,m_2, ...,m_k)$.
 \subsubsection*{Decoding}
@@ -39,12 +38,12 @@ Notice that the only difference with the previous case is the noise term at the 
 \begin{equation}
   C\left(\frac{\alpha_k P}{\left(1-\alpha_k\right)P + N_k}\right)<C\left(\frac{\alpha_k P}{\left(1-\alpha_k\right)P + N_i}\right)
 \end{equation}
-and therefore the condition in \ref{eq:k_cond_superpos} implies the condition in \ref{eq:i_cond_superpos}.\\
-Knowing $U_k$, we can substract it from the received signal:
+and therefore the condition in \eqref{eq:k_cond_superpos} implies the condition in \eqref{eq:i_cond_superpos}.\\
+Knowing $U_k$, we can subtract it from the received signal:
 \begin{equation}
 Y_i - U_k = U_1 + U_2 + ... +U_{k-1} + Z_i
 \end{equation}
-We can now repeat the exact same procedure to obtain all the messages up to $U_i$. At each step $l$, $i\leq l \leq k$, a new condition analogous to \ref{eq:i_cond_superpos} in the form of:
+We can now repeat the exact same procedure to obtain all the messages up to $U_i$. At each step $l$, $i\leq l \leq k$, a new condition analogous to \eqref{eq:i_cond_superpos} in the form of:
 \begin{equation}
   R_l< C\left(\frac{\alpha_l P}{\left(\sum_{h=1}^{l-1}\alpha_h P+N_i\right)}\right)
 \end{equation}
@@ -115,7 +114,7 @@ Let us consider the first term of the previous equation. Applying the properties
     \label{eq:I_M_K}
   \end{split}
 \end{align}
-Consider the last term of equation \ref{eq:I_M_K}:
+Consider the last term of equation \eqref{eq:I_M_K}:
 \begin{align}
   \begin{cases}
   h(Y_k^n|M_k)\geq h(Y_k^n|X^n,M_k) = h(Z^n_k) = \frac{n}{2}\log\left(2\pi e N_k\right) \\
@@ -129,7 +128,7 @@ Therefore, there must exist a $\alpha_k \in [0,1]$ such that
   h(Y_k^n|M_k) = \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_k))
   \label{eq:Y_kM_k}
 \end{equation}
-Substituing \ref{eq:Y_kM_k} in \ref{eq:I_M_K}, we obtain
+Substituing \eqref{eq:Y_kM_k} in \eqref{eq:I_M_K}, we obtain
 \begin{align}
   \begin{split}
     I(M_k;Y_k^n) \leq \frac{n}{2}\log(2\pi e (P+N_k))- h(Y_k^n|M_k) =\\ =\frac{n}{2}\log(2\pi e (P+N_k))-\frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_k))\\
@@ -157,7 +156,7 @@ so for the converse we can just prove that
   I(M_{k-1};Y^n_{k-1}|M_k)\leq \frac{n}{2}\log\left((1-\alpha_{k})P+N_{k-1}\right)-\frac{n}{2}\log\left(\left(1-\alpha_k-\alpha_{k-1}\right)P + N_{k-1}\right)
   \label{eq:I_M-1_K-1}
 \end{equation}
-Again, as in \ref{eq:I_M_K}, we can express
+Again, as in \eqref{eq:I_M_K}, we can express
 \begin{equation}
   I(M_{k-1};Y^n_{k-1}|M_k) = h(Y_{k-1}^n|M_{k}) - h(Y_{k-1}^n|M_k,M_{k-1}).
   \label{eq:I_M_K-1_I_K-1|Mk}
@@ -180,7 +179,7 @@ Again, as in \ref{eq:I_M_K}, we can express
       h(\tilde{Z}^n_{k}|M_k) = h(\tilde{Z}^n_{k}) = \frac{n}{2}\log\left(2\pi e \tilde{N}_k\right).
     \end{split}
   \end{align}
-  Using this result in the \ref{eq:EPI}, and taking the logarithm in both sides,
+  Using this result in the \eqref{eq:EPI}, and taking the logarithm in both sides,
   \begin{align}
     \begin{split}
       2h(Y^n_k|M_k)/n\geq \log\left(2^{2h(Y^n_{k-1}|M_k)/n}+2^{\log\left(2\pi e \tilde{N}_k\right)}\right) \\
@@ -188,14 +187,14 @@ Again, as in \ref{eq:I_M_K}, we can express
       \implies h(Y^n_k|M_k)\geq \frac{n}{2}\log\left(2^{2h(Y^n_{k-1}|M_k)/n}+2\pi e \tilde{N}_k\right)
     \end{split}
   \end{align}
-  Now, we go back to decoder $k$ and use again the result in \ref{eq:Y_kM_k}, from the above equation we obtain that
+  Now, we go back to decoder $k$ and use again the result in \eqref{eq:Y_kM_k}, from the above equation we obtain that
   \begin{equation}
     h(Y_k^n|M_k) = \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_k))\geq \frac{n}{2}\log\left(2^{2h(Y^n_{k-1}|M_k)/n}+2\pi e \tilde{N}_k\right)
   \end{equation}
   Since the logarithm is monotonically increasing, we can move the relation to the arguments:
   \begin{align}
     \begin{split}
-      2\pi e ((1-\alpha_k) P+N_k))\geq (2^{2h(Y^n_{k-1}|M_k)/n}+2\pi e \tilde{N}_k\\
+      2\pi e ((1-\alpha_k) P+N_k))\geq 2^{2h(Y^n_{k-1}|M_k)/n}+2\pi e \tilde{N}_k\\
       \implies
       2\pi e ((1-\alpha_k) P+N_k-\tilde{N}_k)\geq 2^{2h(Y^n_{k-1}|M_k)/n}\\
       \implies
@@ -205,12 +204,12 @@ Again, as in \ref{eq:I_M_K}, we can express
     \end{split}
     \label{eq:Yk-1_Mk}
   \end{align}
-  For the structure of the degraded Gaussian BC, $N_k-\tilde{N}_k=N_{k-1}$ and \ref{eq:Yk-1_Mk} becomes
+  For the structure of the degraded Gaussian BC, $N_k-\tilde{N}_k=N_{k-1}$ and \eqref{eq:Yk-1_Mk} becomes
   \begin{align}
     \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1}))\geq h(Y^n_{k-1}|M_k)
     \label{eq:Yk-1|Mk}
   \end{align}
-  that is the first term in \ref{eq:I_M-1_K-1}, so:
+  that is the first term in \eqref{eq:I_M-1_K-1}, so:
   \begin{align}
     \begin{split}
         I(M_{k-1};Y^n_{k-1}|M_k) = h(Y_{k-1}^n|M_{k}) - h(Y_{k-1}^n|M_k,M_{k-1})\leq\\
@@ -218,11 +217,11 @@ Again, as in \ref{eq:I_M_K}, we can express
     \end{split}
     \label{eq:final_1}
   \end{align}
-  \item $\mathbf{h(Y_{k-1}^n|M_k,M_{k-1})}$. Consider now the second term in \ref{eq:I_M_K-1_I_K-1|Mk}. We can apply the same reasoning as in \ref{eq:Y_kM_k} and set the sequence of disequations:
+  \item $\mathbf{h(Y_{k-1}^n|M_k,M_{k-1})}$. Consider now the second term in \eqref{eq:I_M_K-1_I_K-1|Mk}. We can apply the same reasoning as in \eqref{eq:Y_kM_k} and set the sequence of inequalities:
   \begin{align}
     \begin{cases}
       h(Y_{k-1}|M_{k-1},M_{k})\geq h(Y_{k-1}|M_{k-1},M_{k},X) =h(Z_{k-1}) = \frac{n}{2}\log(2\pi e N_{k-1}) \\
-      h(Y_{k-1}|M_{k-1},M_{k})\leq h(Y_{k-1}|M_{k})\overset{(\ref{eq:Yk-1|Mk})}{\leq} \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1}))
+      h(Y_{k-1}|M_{k-1},M_{k})\leq h(Y_{k-1}|M_{k})\overset{\eqref{eq:Yk-1|Mk}}{\leq} \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1}))
     \end{cases}
   \end{align}
   from which
@@ -241,20 +240,21 @@ Again, as in \ref{eq:I_M_K}, we can express
   \end{equation*}
 \end{itemize}
 Combining the previous points:
-\begin{align}
+\begin{equation}
   \begin{split}
-    I(M_{k-1};Y^n_{k-1}|M_k) = h(Y_{k-1}^n|M_{k}) - h(Y_{k-1}^n|M_k,M_{k-1})\leq\\
-    \overset{(\ref{eq:final_1})}{\leq} \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1})) - h(Y_{k-1}^n|M_k,M_{k-1}) =\\
-    \overset{(\ref{eq:final_2})}{=}\frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1}))-\frac{n}{2}\log(2\pi e ((1-\alpha_k-\alpha_{k-1}) P+N_{k-1}))=\\
-    = \frac{n}{2}\log\left(\frac{((1-\alpha_k) P+N_{k-1}}{(1-\alpha_k-\alpha_{k-1}) P+N_{k-1}}\right)
+    I(M_{k-1};Y^n_{k-1}|M_k) &= h(Y_{k-1}^n|M_{k}) - h(Y_{k-1}^n|M_k,M_{k-1})\\
+    &\overset{\eqref{eq:final_1}}{\leq} \frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1})) - h(Y_{k-1}^n|M_k,M_{k-1})\\
+    &\overset{\eqref{eq:final_2}}{=}\frac{n}{2}\log(2\pi e ((1-\alpha_k) P+N_{k-1}))\\
+    &\qquad -\frac{n}{2}\log(2\pi e ((1-\alpha_k-\alpha_{k-1}) P+N_{k-1}))\\
+    &= \frac{n}{2}\log\left(\frac{(1-\alpha_k) P+N_{k-1}}{(1-\alpha_k-\alpha_{k-1}) P+N_{k-1}}\right)
   \end{split}
   \label{eq:final_k-1}
-\end{align}
+\end{equation}
 Now the procedure can be iterated for every $1\leq i\leq k-1$ in the same way. At the $i$-th step, the condition on $\alpha_i$ is
 \begin{equation}
   0\leq \alpha_i \leq 1-\sum_{h>i}\alpha_h
 \end{equation}
-up to the first receiver, where $\alpha_1 = 1-\sum_{h\neq 1}\alpha_h$ so that the power constrain is also satisfied:
+up to the first receiver, where $\alpha_1 = 1-\sum_{h\neq 1}\alpha_h$ so that the power constraint is also satisfied:
 \begin{equation}
 \sum_{h = 1}^k \alpha_h = 1.
 \end{equation}
@@ -284,7 +284,7 @@ up to the first receiver, where $\alpha_1 = 1-\sum_{h\neq 1}\alpha_h$ so that th
 %   h(Y_i^n|M_{h\leq i}) = \frac{n}{2} \log(2\pi e (\alpha_i P+N_i)).
 %   \label{eq:h_Y}
 % \end{equation}
-% Applying \ref{eq:h_Y} to \ref{eq:I_M_Y}, we obtain
+% Applying \eqref{eq:h_Y} to \eqref{eq:I_M_Y}, we obtain
 % \begin{equation}
 %   I(M;Y_i^n|M_{h<i})\leq \frac{n}{2}\log\left(\frac{P+N_i}{\alpha_i P + N_i}\right)
 % \end{equation}
