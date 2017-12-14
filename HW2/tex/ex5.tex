@@ -1,1 +1,89 @@
+% !TEX root = C:\Users\Famiglia\Documents\GitHub\IT_homeworks\HW2\Solution.tex
 \mysection{5.16}{Problem 5.16}
+\renewcommand{\arraystretch}{2}
+The k-receiver Gaussian Broadcast Channel is composed of k Gaussian BC's, one for each receiver. The output of the channel for the transmitted message $X$ at receiver 1 is $Y_1 = X+Z_1$ and at the $i-th$ receiver is $Y_i = X+Z_i$, where $Z_1,\tilde{Z}_2,...,\tilde{Z}_k$ are Gaussian noise components with powers $N_1,\tilde{N}_2,....,\tilde{N}_k$ respectively. We will assume that the notation is the same as the one used in chapter 5, i.e., the considered BC is degraded and receiver 1 is the strongest. \\
+Let $m_i$ be the message destined to the $i$-th receiver, $i=1,2,...,k$.
+\subsection{Achievability}
+Achievability can be proved using superposition coding.
+\subsubsection*{Codebook generation.}
+ For each receiver $i$ fix a pmf $p(u_i)p(x|u_i)$. For each $i$, randomly and independently generate $2^{nR_i}$ sequences $u^n_i(m_i)$, $m_i\in [1:2^{nR_i}]$, $U_i\sim \mathcal{N}(0, \alpha_i P)$, with $\alpha_1 = 1-\sum_{h=2}^k \alpha_h$.
+According to the superposition coding, to transmit $m_1,m_2,...,m_k$ the transmitter sends
+\begin{equation}
+X = U_1+ U_2+...+U_k = \sum_{i=1}^k U_i
+\end{equation}
+We will use the word "message" to denote both the message $m$ and its encoded version $u$ since they play the same role in this dimostration.
+\subsubsection*{Encoding}
+To send $(m_1,m_2,....,m_k)$ transmit $x^n(m_1,m_2, ...,m_k)$.
+\subsubsection*{Decoding}
+\begin{itemize}
+\item \textbf{@ receiver k} Receiver $k$ receives
+\begin{equation}
+Y_k = Y_{k-1}+\tilde{Z}_k = .. = U_1 + U_2 + ... +U_k + Z_k
+\end{equation}
+Applying the \underline{superposition decoding}, receiver $k$ treats $\sum_{h=1}^{k-1} U_h$ as noise, together with $Z_k$. Accordingly, and applying the knowledge of the point-to-point Gaussian channel, we know that the probability of error goes to zero if
+\begin{equation}
+  R_k<C\left(\frac{S}{N}\right) = C\left(\frac{\alpha_k P}{\left(\sum_{h=1}^{k-1}\alpha_h \right)P + N_k}\right) = C\left(\frac{\alpha_k P}{\left(1-\alpha_k\right)P + N_k}\right)
+  \label{eq:k_cond_superpos}
+\end{equation}
+\item \textbf{@ receiver i} Receiver $i$, $i\neq 1,k$, receives
+\begin{equation}
+Y_i = Y_{i-1}+\tilde{Z}_i = .. = U_1 + U_2 + ... +U_k + Z_i
+\end{equation}
+First, $U_k$ is retrieved, using the same procedure as in the previous case.
+As before, the probability of error goes to zero if
+\begin{equation}
+  R_k<C\left(\frac{S}{N}\right) = C\left(\frac{\alpha_k P}{\left(\sum_{h=1}^{k-1}\alpha_h \right)P + N_i}\right) = C\left(\frac{\alpha_k P}{\left(1-\alpha_k\right)P + N_i}\right)
+  \label{eq:i_cond_superpos}
+\end{equation}
+Notice that the only difference with the previous case is the noise term at the denominator. Since $N_k>N_i\ \forall i\leq k$,
+\begin{equation}
+  C\left(\frac{\alpha_k P}{\left(1-\alpha_k\right)P + N_k}\right)<C\left(\frac{\alpha_k P}{\left(1-\alpha_k\right)P + N_i}\right)
+\end{equation}
+and therefore the condition in \ref{eq:k_cond_superpos} implies the condition in \ref{eq:i_cond_superpos}.\\
+Knowing $U_k$, we can substract it from the received signal:
+\begin{equation}
+Y_i - U_k = U_1 + U_2 + ... +U_{k-1} + Z_i
+\end{equation}
+We can now repeat the exact same procedure to obtain all the messages up to $U_i$. At each step $l$, $i\leq l \leq k$, a new condition analogous to \ref{eq:i_cond_superpos} in the form of:
+\begin{equation}
+  R_l< C\left(\frac{\alpha_l P}{\left(\sum_{h=1}^{l-1}\alpha_h P+N_i\right)}\right)
+\end{equation}
+ must be satisfied to guarantee the correct decoding of $U_l$.
+\item \textbf{@ receiver 1} proceeding iteratively, it is possible to decode all the messages up to message $u_1$. The last condition is
+\begin{equation}
+  R_1<C\left(\frac{\alpha_1 P}{N_1}\right)
+\end{equation}
+\end{itemize}
+The set of conditions obtained during the decoding is summarized in table \ref{tab:conditions}.
+\newline
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{c|c|c|c|c}
+      Receiver & $R_k$ & $R_{k-1}$ &.. & $R_1$ \\
+      \hline
+      $k$ & $R_k<C\left(\frac{\alpha_k P}{\left(1-\alpha_k\right)P + N_k}\right)$ & - & .. & -\\
+      $k-1$ & $R_k<C\left(\frac{\alpha_{k} P}{\left(1-\alpha_k\right)P + N_{k-1}}\right)$ & $R_{k-1}<C\left(\frac{\alpha_{k-1} P}{\left(1-\alpha_k-\alpha_{k-1}\right)P + N_{k-1}}\right)$ & .. & -\\
+      . & . & . & . & . \\
+      . & . & . & . & . \\
+      . & . & . & . & . \\
+      2 & $R_k<C\left(\frac{\alpha_{k} P}{\left(1-\alpha_k\right)P + N_{2}}\right)$ & $R_{k-1}<C\left(\frac{\alpha_{k-1} P}{\left(1-\alpha_k-\alpha_{k-1}\right)P + N_{2}}\right)$ & .. & - \\
+      1 & $R_k<C\left(\frac{\alpha_{k} P}{\left(1-\alpha_k\right)P + N_{1}}\right)$ & $R_{k-1}<C\left(\frac{\alpha_{k-1} P}{\left(1-\alpha_k-\alpha_{k-1}\right)P + N_{1}}\right)$ & .. & $R_{1}<C\left(\frac{\alpha_{1} P}{N_{1}}\right)$\\
+  \end{tabular}
+  \caption{Conditions on the rate of each channel, at each receiver.}
+  \label{tab:conditions}
+\end{table}
+As noticed before, the condition can be simplified as in table \ref{tab:conditions_fin} considering that $N_k\geq N_{k-1}\geq ... \geq N_1$: the rate for channel $i$ is :
+\begin{equation}
+  R_i < C\left(\frac{\alpha_i P}{\sum_{h<i}\alpha_h P +N_i}\right)
+\end{equation}
+\begin{table}[h!]
+\centering
+  \begin{tabular}{c|c|c|c}
+      $R_k$ & $R_{k-1}$ &.. & $R_1$ \\
+      \hline
+      $R_k<C\left(\frac{\alpha_k P}{\left(1-\alpha_k\right)P + N_k}\right)$ & $R_{k-1}<C\left(\frac{\alpha_{k-1} P}{\left(1-\alpha_k-\alpha_{k-1}\right)P + N_{k-1}}\right)$ & .. & $R_{1}<C\left(\frac{\alpha_{1} P}{N_{1}}\right)$\\
+  \end{tabular}
+  \caption{Summary of the conditions on the rate of each channel.}
+  \label{tab:conditions_fin}
+\end{table}
+\subsection{Converse}
