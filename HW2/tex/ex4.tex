@@ -112,7 +112,10 @@ Therefore to prove that all the boundary points of $\C_{MAC}$ are achievable, we
 
 \subsection{Boundary BC achievability}
 
-Our aim is demostrate that the boundary points of $\C_{BC}$ is achievable using the same sequence of codes that achieves the boundary points of $\C_{MAC}$. Suppose to have sequence of code $(2^{nR_1}, 2^{nR_2}, n)$ that achieves the boundary points of $\C_{MAC}$. We assume that the power allocation is enhanced so that $x_1^n$ obtains $n \beta P$ while $x_2^n$ obtains $n (1-\beta) P$. We also assume that the chosen codes are uncorrelated for large $n$ as we can see in \eqref{eq:uncor}.
+Our aim is demostrate that the boundary points of $\C_{BC}$ is achievable using the same sequence of codes that achieves the boundary points of $\C_{MAC}$. Honestely we believe that this question is not clear, since Gaussian MAC and Gaussian BC represent two completely different scenarios and they cannot works with same sequence of codes. However we will solve the exercise finding a sequence codes for the Gaussian BAC that is obtained by the sequence of codes for the Gaussian BC; in particular we will a sequence of codes for the Gaussian BC with the same power constraint of the  Gaussian BC.
+
+
+Suppose to have sequence of code $(2^{nR_1}, 2^{nR_2}, n)$ that achieves the boundary points of $\C_{MAC}$. As we saw in the previous point of the exercise, this means that the sequence of codes is able to achieve the point \eqref{eq:boundmac}. We assume that the power allocation is enhanced so that $x_1^n$ obtains $n \beta P$ while $x_2^n$ obtains $n (1-\beta) P$. We also assume that the chosen codes are uncorrelated for large $n$ as we can see in \eqref{eq:uncor}.
 
 \begin{equation}
 	\frac{1}{n}\sum_{i=1}^n x_{1i}(m_1) x_{2i} (m_2)= 0 \quad \forall (m_1,m_2) \in [1:2^{nR_1}]\times[1:2^{nR_2}]
@@ -158,4 +161,4 @@ We chose to use $\alpha = \frac{\beta}{1+ (1-\beta) S_2}$, obtaining \eqref{eq:m
 \label{eq:macachiev}
 \end{equation}
 
-As previously proved \eqref{eq:macachiev} represents the achievability conditions for boundary points of Gaussian MAC. Therefore the proof is given.
+The otained result \eqref{eq:macachiev} represents the achievability conditions for boundary points of Gaussian MAC. Therefore the proof is given.
