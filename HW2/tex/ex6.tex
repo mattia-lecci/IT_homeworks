@@ -1,1 +1,126 @@
 \mysection{5.20}{Problem 5.20}
+
+We consider the three-sender DC-MAC described by the exercise. We have two messages set [1:$2^{nR_1}$] and [1:$2^{nR_2}$], one encoder that assigns $x(m_1)$ to each message $m_1 \in [1:2^{nR_1}]$, an encoder that assigns $x(m_2)$ to each message $m_2 \in [1:2^{nR_2}]$ and an encoder that assign $x(m_1,m_2)$ to each pair $(m_1,m_2) \in [1:2^{nR_1}]x[1:2^{nR_2}]$. We notice that the choice of $m_1$ and $m_2$ are considered to be independent. The three encoded messages are sent trough a MAC channel. Then a decoder assigns an extimate $(\hat{m_1},\hat{m_2}) \in [1:2^{nR_1}] \times [1:2^{nR_2}]$ to each received sequence. We define the average probability error as in \eqref{eq:averror}.
+
+\begin{equation}
+	P(\xi)=Prob\{(\hat{m_1},\hat{m_2}) \neq (m_1,m_2)\}
+	\label{eq:averror}
+\end{equation}
+
+We want to show that the capacity region $C(R_1, R_2)$ of the system is given by the set of $(R_1,R_2)$ that occur \eqref{eq:cregion} for some pmf $p(q)P(x_1|q)p(x_2|q)p(x_3|x_1,x_2,q)p(y|x_1,x_2,x_3,q)$ with $|Q| \leq 2$.
+
+\begin{equation}
+	\begin{gathered}
+		R_1 \leq I(X_1,X_3;Y|X_2,Q) \\
+		R_2 \leq I(X_2,X_3;Y|X_1,Q) \\
+		R_1+R_2 \leq I(X_1,X_2,X_3;Y|Q)
+	\end{gathered}
+	\label{eq:cregion}
+\end{equation}
+
+In order to do so, we first prove the achievability of the capacity reason, which coincides to show that $(2^{nR_1},2^{nR_2},n):P(\xi) \rightarrow 0$ $ \forall $ $ (R_1,R_2) \in C(R_1, R_2) $, and then the converse, which coincides to show that $(R_1,R_2) \in C(R_1, R_2) $ $\forall $ $ (2^{nR_1},2^{nR_2},n):P(\xi) \rightarrow 0$.
+
+\subsection{Achievability}
+
+We randomly and idependently generate $2^{nR_1}$ sequences $x_1^{(n)}(m_1)$ according to a chosen $p(x_1)$, $2^{nR_2}$ sequences $x_2^{(n)}(m_2)$ according to a chosen $p(x_2)$ and $2^{n(R_1+R_2)}$ sequences $x_3^{(n)}(m_1,m_2)$ according to a chosen $p(x_3|x_1,x_2)$. The described codebook is revealed to both the encoders and the decoder. In order to send the pair $(m_1,m_2)$ the first encoder trasmits $x_1^{(n)}(m_1)$, the second encoder trasmits $x_2^{(n)}(m_2)$ while the third encoder trasmits $x_3^{(n)}(m_1,m_2)$.
+
+We choose to enhance a \textit{simultaneous decoding} strategy. Therefore the decoder declares that $(\hat{m_1},\hat{m_2})$ was sent if it is the unique pair that satisfies \eqref{eq:sentcond}. In the other case it declares an error.
+
+\begin{equation}
+	(x_1^n(\hat{m_1}),x_2^n(\hat{m_2}), x_3^n(\hat{m_1}, \hat{m_2}), y^n) \in \typicalitySet{}
+	\label{eq:sentcond}
+\end{equation}
+
+First we bound the error event averaged over all the possible random codebooks and messages, obtaining \eqref{eq:boundep}.
+
+\begin{equation}
+	P(\xi)=P(\xi | M_1=1,M_2=1)
+	\label{eq:boundep}
+\end{equation}
+
+Given $(M_1=1,M_2=1)$ the triple $(X_1^n(m_1),X_2^n(m_2), X_3^n(m_1,m_2),Y^n)$ induce the following pmfs $p(x_1^n,x_2^n,x_3^n,y^n)$.
+
+\begin{center}
+    \begin{tabular}{ | c | c | c |}
+    \hline
+		$m_1$ & $m_2$ & $p(x_1^n,x_2^n,x_3^n,y^n)$ \\ \hline
+		1 & 1 & $p(x_1^n)p(x_2^n)p(x_3^n|x_1^n,x_2^n)p(y^n|x_1^n,x_2^n,x_3^n)$ \\ \hline
+    1 & $\neq 1$ & $p(x_1^n)p(x_2^n)p(x_3^n)p(y^n|x_1^n)$ \\ \hline
+    $\neq 1$ & 1 & $p(x_1^n)p(x_2^n)p(x_3^n)p(y^n|x_2^n)$ \\ \hline
+		$\neq 1$ & $\neq 1$ & $p(x_1^n)p(x_2^n)p(x_3^n)p(y^n)$ \\ \hline
+    \end{tabular}
+\end{center}
+
+Given $(M_1=1,M_2=1)$ the error event $\xi$ can be decomposed as $\xi = \xi_1 \cup \xi_2 \cup \xi_3 \cup \xi_4$.
+
+\begin{equation}
+	\begin{gathered}
+		\xi_1 = \{ (x_1^n(1),x_2^n(1), x_3^n(1,1), y^n) \notin \typicalitySet{} \} \\
+		\xi_2 = \{ (x_1^n(\hat{1}),x_2^n(\hat{m_2} \neq 1), x_3^n(1,\hat{m_2} \neq 1), y^n) \in \typicalitySet{} \} \\
+		\xi_3 = \{ (x_1^n(\hat{m_1}\neq 1),x_2^n(1), x_3^n(\hat{m_1} \neq 1,1), y^n) \in \typicalitySet{} \} \\
+		\xi_4 = \{ (x_1^n(\hat{m_1}\neq 1),x_2^n(\hat{m_2} \neq 1), x_3^n(\hat{m_1} \neq 1,\hat{m_2} \neq 1), y^n) \in \typicalitySet{} \} \\
+	\end{gathered}
+\end{equation}
+
+By the Law of Total Probability we can state that $P(\xi) \leq P(\xi_1) + P(\xi_2) + P(\xi_3) + P(\xi_4) $. $P(\xi)$ will tend to $0$ if $P(\xi_i) \rightarrow 0$ $\forall i \in \{1,2,3,4\}$. Therefore we focus to the singles error probabilities $P(\xi_1)$, $P(\xi_2)$, $P(\xi_3)$ and $P(\xi_4)$.
+
+\begin{itemize}
+	\item As repeatedly demonstrated during the course $P(\xi_1)$ will tend to 0 as $n \rightarrow \infty$ for the Law of Large Number.
+
+	\item The induced pmf in $\xi_2$ is $p(x_1^n)p(x_2^n)p(x_3^n)p(y^n|x_1^n)$ which means that ($X_2^n(m_2)$, $X_3^n(1,m_2)$) is independent from ($X_1^n(1)$, $Y^n$). Therefore we can use the Packing Lemma setting $U \leftarrow \emptyset $, $X \leftarrow (X_2,X_3)$ and $Y \leftarrow (X_1,Y)$. Doing so we obtain what follows.
+
+	\begin{equation*}
+		P(\xi_2) \rightarrow 0 \Leftarrow R_2 \leq I(X_2,X_3;Y|X_1)
+	\end{equation*}
+
+	\item The induced pmf in $\xi_3$ is $p(x_1^n)p(x_2^n)p(x_3^n)p(y^n|x_2^n)$ which means that ($X_1^n(m_1)$, $X_3^n(m_1,1)$) is independent from ($X_2^n(1)$, $Y^n$). Therefore we can use the Packing Lemma setting $U \leftarrow \emptyset $, $X \leftarrow (X_1,X_3)$ and $Y \leftarrow (X_2,Y)$. Doing so we obtain what follows.
+
+	\begin{equation*}
+		P(\xi_3) \rightarrow 0 \Leftarrow R_1 \leq I(X_1,X_3;Y|X_2)
+	\end{equation*}
+
+	\item The induced pmf in $\xi_4$ is $p(x_1^n)p(x_2^n)p(x_3^n)p(y^n)$ which means that ($X_1^n(m_1)$, $X_2^n(m_2)$, $X_3^n(m_1,m_2)$) is independent from $Y^n$. Therefore we can use the Packing Lemma setting $U \leftarrow \emptyset $, $X \leftarrow (X_1, X_2, X_3)$ and $Y \leftarrow Y$. Doing so we obtain what follows.
+
+	\begin{equation*}
+		P(\xi_4) \rightarrow 0 \Leftarrow R_1+R_2 \leq I(X_1,X_2,X_3;Y)
+	\end{equation*}
+\end{itemize}
+
+The three limits previously found extended for every possibile $p(x_1),p(x_2),p(x_3)$ define a region that we call $C^1(R_1,R_2)$. It is clear that $(R_1,R_2) \in C^1(R_1, R_2) \Rightarrow P(\xi_1) + P(\xi_2) + P(\xi_3) + P(\xi_4) \rightarrow 0 \Rightarrow P(\xi) \rightarrow 0$.
+
+\subsection{Converse}
+
+Let's assume to enhance a code that ensures $P(\xi) \rightarrow 0$ as $n \rightarrow \infty$. $(M_1,M_2,X_1^n,X_2^n,X_3^n,Y^n)$ involves the pmf which approximation is shown in \eqref{eq:convpmf}.
+
+\begin{equation}
+	p(x_1^n,x_2^n,x_3^n,y^n)\approx2^{n(R_1+R_2)}p(x_1|m_1)p(x_2|m_2)p(x_3|m_1,m_2)\prod_{i=1}^n p(y_i|x_{1i},x_{2i},x_{3i})
+	\label{eq:convpmf}
+\end{equation}
+
+By Fano inequality we can state what follows.
+
+\begin{equation}
+	\begin{gathered}
+		H(M_1,M_2|Y^n) \leq \log(|M_1\times M_2|)P(\xi)+1 = n(R_1+R_2)P(\xi)+1 = n\epsilon_n\\
+		\Rightarrow
+		\begin{cases}
+			H(M_1|Y^n,M_2) \leq H(M_1,M_2|Y^n) \leq n\epsilon_n \\
+			H(M_2|Y^n,M_1) \leq H(M_1,M_2|Y^n) \leq n\epsilon_n
+		\end{cases}
+	\end{gathered}
+	\label{eq:recallfano}
+\end{equation}
+
+We notice that as the error probability $P(\xi)$, $n\epsilon_n$ goes to $0$ as $n \rightarrow \infty$. Now we define $Q \sim U[1:n]$ such that $p(q)=\frac{1}{n}$ $\forall q \in [1:n]$. Knowing \eqref{eq:recallfano} we can follow the same procedure applied in chapter 4 for the MAC channel coding converse.
+
+\begin{equation}
+	\begin{gathered}
+		R_1 \leq \sum_{i=1}^n P\{Q=i\} I(X_{1i},X_{3i};Yi|X_{2i},Q=i) + n\epsilon_n = I(X_{1},X_{3};Y|X_{2},Q)+n\epsilon_n\\
+		R_2 \leq \sum_{i=1}^n P\{Q=i\} I(X_{2i},X_{3i};Yi|X_{1i}, Q=i) + n\epsilon_n = I(X_{2},X_{3};Y|X_{1},Q)+n\epsilon_n\\
+		R_1 + R_2 \leq \sum_{i=1}^n P\{Q=i\}I(X_{1i},X_{2i},X_{3i};Yi, Q=i) + n\epsilon_n = I(X_{1},X_{2},X_{3};Y,Q)+n\epsilon_n \\
+	\end{gathered}
+\end{equation}
+
+The three limits previously found define a region that we call $C^2(R_1,R_2)$. It is clear that $ P(\xi) \rightarrow 0 \Rightarrow (R_1,R_2) \in C^2(R_1, R_2)$.
+
+As proved during the course we can state that $C^1(R_1,R_2)$ and $C^2(R_1,R_2)$ define the same region. We have that $C^1 \subseteq C^2$ since all achivables rates must be contained in $C^2$. We have also that $C^2 \subseteq C^1$ since any pmf $p(q)p(x_1|q)p(x_2|q)p(x_3|x_1,x_2,q)p(y|x_1,x_2,x_3,q)$ define a pentagonal region $C^2$ which corner are contained in $C^1$. Therefore the problem is solved.
