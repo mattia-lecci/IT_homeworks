@@ -1,3 +1,4 @@
+% !TEX root = C:\Users\Famiglia\Documents\GitHub\IT_homeworks\HW2\Solution.tex
 \mysection{10.1}{Problem 10.1}
 
 We define the encoder as follows:
@@ -11,7 +12,7 @@ We define the encoder as follows:
 	}
 \end{algorithm}
 
-We say that the optimal rate $R^*=H(X|Y)$. Note that for each $\varepsilon>0$, we can define $R = R^* + \delta(\varepsilon) = H(X|Y) + \varepsilon H(X|Y)$. Also, we recall that for any $\varepsilon>0$, $|\typicalitySet(X|y^n)| \leq 2^{n(H(X|Y) + \delta(\varepsilon))} = 2^{nR}$.
+We say that the optimal rate is $R^*=H(X|Y)$. Note that for each $\varepsilon>0$, we can define $R = R^* + \delta(\varepsilon) = H(X|Y) + \varepsilon H(X|Y)$. Also, we recall that for any $\varepsilon>0$, $|\typicalitySet(X|y^n)| \leq 2^{n(H(X|Y) + \delta(\varepsilon))} = 2^{nR}$.
 
 Then, the decoder will return an error if $m=1$ otherwise it will return the $x^n$ associated with the unique number and the side information $y^n$.
 
